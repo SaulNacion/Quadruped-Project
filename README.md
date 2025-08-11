@@ -54,6 +54,7 @@ For installation instructions, please visit the official tutorials:
 3. Build the project workspace according to your platform  (TODO)
 4. Launch simulations and control nodes as needed  (TODO)
 
+📚 [Read the full project documentation here](https://hosting-quadruped-documentation.readthedocs.io/es/latest/index.html)  
 ---
 
 ## Contact / Contacto

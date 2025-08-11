@@ -2,6 +2,4 @@
 *.swp
 *.bak
 .env
-/others/
-/src/hw/
 /docs/build/

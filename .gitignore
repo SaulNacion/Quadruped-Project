@@ -3,3 +3,8 @@
 *.bak
 .env
 /docs/build/
+
+# Files generated during ROS compilation
+/build/
+/install/
+/log/

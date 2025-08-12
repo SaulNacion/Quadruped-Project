@@ -1,6 +1,6 @@
-# Custom Cave Environment: `cave_circuit_01_customized.sdf`
+# Example of custom cave environment
 
-This document outlines the process used to create `cave_circuit_01_customized.sdf`, a modified version of the original SubT Challenge world. The goal is to provide a purely static and lightweight environment, ideal for navigation, mapping, or perception tasks without the overhead of dynamic elements.
+This document outlines the process used to create `cave_circuit_01_customized.sdf`, a modified version of the original SubT Challenge world. The goal is to provide a purely static and lightweight environment, ideal for navigation, mapping, or perception tasks without the overhead of dynamic elements. More models are coming.
 
 ---
 
@@ -29,8 +29,6 @@ All elements not part of the cave's physical, static structure were removed to s
 *   **Dynamic Obstacles (Rock Falls):** All four rockfall systems were eliminated. This included the `performer_detector` models and the `TriggeredPublisher` plugins responsible for activating them.
 *   **Mission Artifacts & Objects:** All non-structural objects were removed, such as helmets, ropes, backpacks, rescue mannequins, and cell phones.
 *   **Level Management System:** The entire `plugin` that managed loading entities by levels was removed. This plugin acted as a performance optimization, dynamically loading sections of the world only when the robot was nearby. It was removed to ensure a fully static and predictable environment.
-
-### 2. Model URI Correction
 
 ### 2. Model URI Correction
 

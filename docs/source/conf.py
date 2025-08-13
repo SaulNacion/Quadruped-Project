@@ -23,6 +23,11 @@ extensions = [
     'myst_parser',         # Para usar archivos Markdown (.md)
 ]
 
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+}
+
 templates_path = ['_templates']
 exclude_patterns = []
 

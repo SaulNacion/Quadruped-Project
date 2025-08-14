@@ -1,1 +1,0 @@
-../../src/quadruped_sim/README.md

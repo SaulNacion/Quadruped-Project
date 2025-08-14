@@ -1,1 +1,0 @@
-../../src/quadruped_sim/examples/robots_sim/README.md

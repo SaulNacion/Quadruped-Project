@@ -38,11 +38,11 @@ ros2 launch the_construct_office_gazebo warehouse_rb1_rviz.launch.xml
 ```
 output gazebo
 
-<img src="_static/images/robots_sim/rb1/gazebo.png" alt="rviz" width="400"/>  
+<img src="images/rb1/gazebo.png" alt="rviz" width="400"/>  
 
 output rviz
 
-<img src="_static/images/robots_sim/rb1/rviz.png" alt="rviz" width="400"/>  
+<img src="images/rb1/rviz.png" alt="rviz" width="400"/>  
 
 ### 1.1.3 Mover robot
 
@@ -110,7 +110,7 @@ ros2 launch champ_config gazebo.launch.py
 ```
 Output
 
-<img src="_static/images/robots_sim/champ/gazebo.png" alt="rviz" width="400"/>  
+<img src="images/champ/gazebo.png" alt="rviz" width="400"/>  
 
 **Rviz2**
 
@@ -123,7 +123,7 @@ ros2 run rviz2 rviz2 -d ~/champ_ws/src/champ/gazebo.rviz
 
 Output
 
-<img src="_static/images/robots_sim/champ/rviz.png" alt="rviz" width="400"/>  
+<img src="images/champ/rviz.png" alt="rviz" width="400"/>  
 
 #### 2.1.3 Mover robot
 

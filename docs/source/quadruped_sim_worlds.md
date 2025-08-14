@@ -1,1 +1,0 @@
-../../src/quadruped_sim/worlds/README.md

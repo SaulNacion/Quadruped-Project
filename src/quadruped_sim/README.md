@@ -1,8 +1,9 @@
 # Simulation
 
-[world](quadruped_sim_worlds.md)
+Ir a {doc}`Worlds <quadruped_sim_worlds>`
 
-[robots_sim](robots_sim.md)
+Ir a {doc}`Robot Sim <robots_sim>`
+
 
 
 

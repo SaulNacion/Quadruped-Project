@@ -1,8 +1,11 @@
 # Simulation
+...
 
-Ir a {doc}`Worlds <quadruped_sim_worlds>`
+## Links
 
-Ir a {doc}`Robot Sim <robots_sim>`
+[worlds](quadruped_sim_worlds.md) :: {doc}`<quadruped_sim_worlds>`
+
+[robots_sim](robots_sim.md) :: {doc}`<robots_sim>`
 
 
 

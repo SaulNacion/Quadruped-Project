@@ -1,13 +1,12 @@
 # Simulation
 ...
 
-## Links
+## [worlds](quadruped_sim_worlds.md)
 
-[worlds](quadruped_sim_worlds.md) :: {doc}`<quadruped_sim_worlds>`
+## [robots_sim](robots_sim.md)
 
-[robots_sim](robots_sim.md) :: {doc}`<robots_sim>`
-
-
-
-
-
+```{toctree}
+:hidden:
+quadruped_sim_worlds
+robots_sim
+```

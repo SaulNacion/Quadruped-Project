@@ -16,4 +16,11 @@ Esta es la documentación oficial del **proyecto cuadrúpedo**. Aquí se encuent
    quadruped_control
    quadruped_sim
 
+.. toctree::
+   :hidden:
+
+   quadruped_sim_worlds
+   robots_sim
+
+
 

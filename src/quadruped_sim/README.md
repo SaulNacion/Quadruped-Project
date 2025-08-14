@@ -1,7 +1,5 @@
 # Simulation
 ...
 
-```{toctree}
-quadruped_sim_worlds
-robots_sim
-```
+[worlds](quadruped_sim_worlds.md)
+[robots_sim](robots_sim.md)

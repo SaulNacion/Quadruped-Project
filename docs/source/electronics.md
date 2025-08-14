@@ -1,1 +1,1 @@
-# Electrónics
+# Electrónica

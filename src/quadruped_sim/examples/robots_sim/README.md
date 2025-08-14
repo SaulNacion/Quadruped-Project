@@ -38,11 +38,11 @@ ros2 launch the_construct_office_gazebo warehouse_rb1_rviz.launch.xml
 ```
 output gazebo
 
-<img src="_static/images/rb1/gazebo.png" alt="rviz" width="400"/>  
+<img src="_static/images/robots_sim/rb1/gazebo.png" alt="rviz" width="400"/>  
 
 output rviz
 
-<img src="_static/images/rb1/rviz.png" alt="rviz" width="400"/>  
+<img src="_static/images/robots_sim/rb1/rviz.png" alt="rviz" width="400"/>  
 
 ### 1.1.3 Mover robot
 
@@ -100,7 +100,7 @@ source ~/champ_ws/install/setup.bash
 
 Nota: La primera vez que se ejecuta la simulación esta suele tardar alrededor de 1 a 3 min, esto debido a la cantidad de procesos a ejecutarse, esto solo sucederá la primera vez, luego el tiempo estimado es de 10 a 30 segundos. 
 
-Para poder ejecutar esta simulación es necesario aver seguido estos pasos [Quadruped](../software_setup).
+Para poder ejecutar esta simulación es necesario aver seguido estos pasos [Quadruped](quadruped_description.md#id3).
 
 Terminal 1 
 ```bash
@@ -110,7 +110,7 @@ ros2 launch champ_config gazebo.launch.py
 ```
 Output
 
-<img src="_static/images/champ/gazebo.png" alt="rviz" width="400"/>  
+<img src="_static/images/robots_sim/champ/gazebo.png" alt="rviz" width="400"/>  
 
 **Rviz2**
 
@@ -123,7 +123,7 @@ ros2 run rviz2 rviz2 -d ~/champ_ws/src/champ/gazebo.rviz
 
 Output
 
-<img src="_static/images/champ/rviz.png" alt="rviz" width="400"/>  
+<img src="_static/images/robots_sim/champ/rviz.png" alt="rviz" width="400"/>  
 
 #### 2.1.3 Mover robot
 

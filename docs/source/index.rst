@@ -12,15 +12,8 @@ Esta es la documentación oficial del **proyecto cuadrúpedo**. Aquí se encuent
    :maxdepth: 2
    :caption: Contenido:
 
-   description
-   software_setup
-   install_ros
-   packages_doc
    quadruped_description
-   test_package
-   robot_sim
-   sw_prev_guide
-   system_requirements
-   ../README
-   ../../src/quadruped_sim/worlds/README
-   ../../src/quadruped_control/README
+   quadruped_control
+   quadruped_sim
+
+

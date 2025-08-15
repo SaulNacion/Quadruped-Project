@@ -104,13 +104,16 @@ def generate_launch_description():
         }.items()
     )
 
-    allRosNode = [
-        SetEnvironmentVariable(
-            'GZ_SIM_RESOURCE_PATH',
-            PathJoinSubstitution([packagepath, 'models'])
-        ),
-        gz_sim_launch
-    ]
+    if node_ros.get('state', False):
+        allRosNode = [
+            SetEnvironmentVariable(
+                'GZ_SIM_RESOURCE_PATH',
+                PathJoinSubstitution([packagepath, 'models'])
+            ),
+            gz_sim_launch
+        ]
+    else:
+        allRosNode = []
 
     # get mainnodes list from config file
     indexed_mainnodes_list = {}

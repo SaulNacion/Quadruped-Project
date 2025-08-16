@@ -1,0 +1,9 @@
+# Full set of configurations
+- ros_topic_name: "turtle1/cmd_vel"
+  gz_topic_name: "/turtle1/cmd_vel"
+  ros_type_name: "geometry_msgs/msg/Twist"
+  gz_type_name: "gz.msgs.Twist"
+  subscriber_queue: 10
+  publisher_queue: 10
+  lazy: true
+  direction: ROS_TO_GZ

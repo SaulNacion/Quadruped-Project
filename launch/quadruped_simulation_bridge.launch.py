@@ -126,19 +126,19 @@ def generate_launch_description():
             )
         
         allRosNode.append(bridge_config)
+
+        config_tf = Node(
+            package='tf2_ros',
+            executable='static_transform_publisher',
+            name='static_tf_green',
+            arguments=['0.8', '0', '0.5', '0', '0', '0',
+                       'robot_diferencial/chassis', 'robot_diferencial/chassis/gpu_lidar'],
+            output='screen'
+        )
+
+        allRosNode.append(config_tf)
     else:
         allRosNode = []
-
-    # #   Bridge Launch 
-    # bridge_name = "ros_gz_bridge"
-    # config_bridge_file = os.path.join(os.getenv('CONFIG_DIR'), 'ros_bridge.yaml')
-
-    # bridge_config = RosGzBridge(
-    #         bridge_name=bridge_name,
-    #         config_file=config_bridge_file,
-    #     )
-    
-    # allRosNode.append(bridge_config)
 
     # get mainnodes list from config file
     indexed_mainnodes_list = {}

@@ -7,3 +7,47 @@
   publisher_queue: 10
   lazy: true
   direction: ROS_TO_GZ
+
+- ros_topic_name: "imu"
+  gz_topic_name: "/imu"
+  ros_type_name: "sensor_msgs/msg/Imu"
+  gz_type_name: "gz.msgs.IMU"
+  subscriber_queue: 10
+  publisher_queue: 10
+  lazy: true
+  direction: GZ_TO_ROS
+
+- ros_topic_name: "lidar"
+  gz_topic_name: "/lidar/points" 
+  ros_type_name: "sensor_msgs/msg/PointCloud2"
+  gz_type_name: "gz.msgs.PointCloudPacked"
+  subscriber_queue: 10
+  publisher_queue: 10
+  lazy: true
+  direction: GZ_TO_ROS
+
+# Lidar 2D configuration
+# - ros_topic_name: "lidar_2d"
+#   gz_topic_name: "/lidar" 
+#   ros_type_name: "sensor_msgs/msg/LaserScan"
+#   gz_type_name: "gz.msgs.LaserScan"
+#   subscriber_queue: 10
+#   publisher_queue: 10
+#   lazy: true
+#   direction: GZ_TO_ROS
+
+# Important topics to visualize information in rviz
+- ros_topic_name: "tf"
+  gz_topic_name: "/model/robot_diferencial/tf"
+  ros_type_name: "tf2_msgs/msg/TFMessage"
+  gz_type_name: "gz.msgs.Pose_V"
+  subscriber_queue: 10
+  publisher_queue: 10
+  lazy: true
+  direction: GZ_TO_ROS
+
+- topic_name: "/model/robot_diferencial/odometry"
+  ros_type_name: "nav_msgs/msg/Odometry"
+  gz_type_name: "gz.msgs.Odometry"
+  lazy: true
+  direction: GZ_TO_ROS

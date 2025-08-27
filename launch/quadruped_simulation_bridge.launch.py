@@ -10,6 +10,9 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 
+from launch.actions import LogInfo
+from launch.substitutions import EnvironmentVariable
+
 from ros_gz_bridge.actions import RosGzBridge
 
 def getNodeInfo(listofnode, nodename):
@@ -62,7 +65,7 @@ def generate_launch_description():
    # display node list with parameters, parameters will be added later 
     print('-' * 110 )
     print('-' * 50 + " Simulator " + '-' * 49)    
-    print(f'+ {"Simulator":^10} + {"package path":^70} + {"world"}')
+    print(f'+ {"Simulator":^10} + {"package path":^70} + {"world:":^70} + {"model"}')
     
     allRosNode = []
 
@@ -79,12 +82,13 @@ def generate_launch_description():
                     rosoutput = {f'{output}' }
                 world = node_ros.get('world', 'none')
                 package = node_ros.get('package', None)
+                models_to_load = node_ros.get('models', []) # Obtiene la lista de modelos, por defecto vacía
                 try:
                     packagepath = get_package_share_directory(package)
                 except Exception as e:
                     print(f" == getNodeInfo error : {e}")
                     return None, None , None, None , False
-                print(f"+ {'gazebo':<10} | {packagepath:<70} | {world}") 
+                print(f"+ {'gazebo':<10} | {packagepath:<70} | {world:<70} | {models_to_load}") 
             else:
                 print('-' * 42 + "  Not simulator running  " + '-' * 43)  
 
@@ -104,6 +108,7 @@ def generate_launch_description():
                     'worlds',
                     world
                 ]),
+                # 'extra_gz_args': extra_gz_args_string, # Models not working, service for creation very slow
                 'on_exit_shutdown': 'True'
             }.items()
         )
@@ -115,6 +120,53 @@ def generate_launch_description():
             ),
             gz_sim_launch
         ]
+
+        # Printing GZ_SIM_RESOURCE_PATH to check
+        log_gz_resource_path = LogInfo(
+            msg=[
+                'GZ_SIM_RESOURCE_PATH set to: ',
+                EnvironmentVariable('GZ_SIM_RESOURCE_PATH')
+            ]
+        )
+        allRosNode.append(log_gz_resource_path)       
+
+         # Spawning Models
+        for model_config in models_to_load:
+            model_uri = model_config.get('uri')
+            if not model_uri:
+                print(f"WARNING: Model configuration in YAML missing 'uri' key: {model_config}")
+                continue
+            model_path = os.path.join(packagepath, 'models', model_uri, 'model.sdf') # Ajusta 'model.sdf' si el archivo principal tiene otro nombre
+
+            world_runtime_name, _ = os.path.splitext(world)
+            spawn_args = [
+                '-file', model_path,
+                '-world', world_runtime_name
+            ]
+            
+            model_name_instance = model_config.get('name')
+            if model_name_instance:
+                spawn_args.extend(['-name', model_name_instance])
+
+            model_pose = model_config.get('pose')
+            if model_pose and len(model_pose) == 6:
+                spawn_args.extend([
+                    '-x', str(model_pose[0]),
+                    '-y', str(model_pose[1]),
+                    '-z', str(model_pose[2]),
+                    '-R', str(model_pose[3]),
+                    '-P', str(model_pose[4]),
+                    '-Y', str(model_pose[5])
+                ])
+
+            # Service to create node, service called world/name_world/create must be active otherwise model will not appear
+            spawn_node = Node(
+                package='ros_gz_sim',
+                executable='create',
+                arguments=spawn_args,
+                output='screen'
+            )
+            allRosNode.append(spawn_node)
 
         #   Bridge Launch 
         bridge_name = "ros_gz_bridge"

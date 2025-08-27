@@ -1,3 +1,4 @@
+# Warning : tf and odometry must be changed according the name of robot
 # Full set of configurations
 - ros_topic_name: "turtle1/cmd_vel"
   gz_topic_name: "/turtle1/cmd_vel"
@@ -38,7 +39,7 @@
 
 # Important topics to visualize information in rviz
 - ros_topic_name: "tf"
-  gz_topic_name: "/model/robot_diferencial/tf"
+  gz_topic_name: "/model/robot_diferencial_sensors/tf"
   ros_type_name: "tf2_msgs/msg/TFMessage"
   gz_type_name: "gz.msgs.Pose_V"
   subscriber_queue: 10
@@ -46,7 +47,7 @@
   lazy: true
   direction: GZ_TO_ROS
 
-- topic_name: "/model/robot_diferencial/odometry"
+- topic_name: "/model/robot_diferencial_sensors/odometry"
   ros_type_name: "nav_msgs/msg/Odometry"
   gz_type_name: "gz.msgs.Odometry"
   lazy: true

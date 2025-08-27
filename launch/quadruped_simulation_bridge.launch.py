@@ -65,7 +65,7 @@ def generate_launch_description():
    # display node list with parameters, parameters will be added later 
     print('-' * 110 )
     print('-' * 50 + " Simulator " + '-' * 49)    
-    print(f'+ {"Simulator":^10} + {"package path":^70} + {"world:":^70} + {"model"}')
+    print(f'+ {"Simulator":^10} + {"package path":^70} + {"world":^20} + {"model"}')
     
     allRosNode = []
 
@@ -82,13 +82,15 @@ def generate_launch_description():
                     rosoutput = {f'{output}' }
                 world = node_ros.get('world', 'none')
                 package = node_ros.get('package', None)
-                models_to_load = node_ros.get('models', []) # Obtiene la lista de modelos, por defecto vacía
+                models_to_load = node_ros.get('models', [])
                 try:
                     packagepath = get_package_share_directory(package)
                 except Exception as e:
                     print(f" == getNodeInfo error : {e}")
                     return None, None , None, None , False
-                print(f"+ {'gazebo':<10} | {packagepath:<70} | {world:<70} | {models_to_load}") 
+                for model_config in models_to_load:
+                    local_model = model_config.get('uri')
+                    print(f"+ {'gazebo':<10} | {packagepath:<70} | {world:<20} | {local_model}") 
             else:
                 print('-' * 42 + "  Not simulator running  " + '-' * 43)  
 
@@ -136,7 +138,7 @@ def generate_launch_description():
             if not model_uri:
                 print(f"WARNING: Model configuration in YAML missing 'uri' key: {model_config}")
                 continue
-            model_path = os.path.join(packagepath, 'models', model_uri, 'model.sdf') # Ajusta 'model.sdf' si el archivo principal tiene otro nombre
+            model_path = os.path.join(packagepath, 'models', model_uri, 'model.sdf')
 
             world_runtime_name, _ = os.path.splitext(world)
             spawn_args = [

@@ -17,6 +17,12 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
+# Instala el directorio 'models'
+install(
+  DIRECTORY models
+  DESTINATION share/${PROJECT_NAME}
+)
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights

@@ -7,7 +7,7 @@ from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch.actions import IncludeLaunchDescription, SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import PathJoinSubstitution
+from launch.substitutions import PathJoinSubstitution, TextSubstitution
 from launch_ros.substitutions import FindPackageShare
 
 from launch.actions import LogInfo
@@ -241,5 +241,23 @@ def generate_launch_description():
     print('-' * 110 )
        
     print(" ------ starting ros2 nodes ------ ")   
-     
+    
+    gazebo_plugin_path = os.path.join(
+        os.getenv('HOME'),
+        'Personal/Quadruped-Project',
+        'install',
+        'quadruped_sim',
+        'lib',
+        'quadruped_sim'
+    )
+
+    set_gazebo_plugin_path = SetEnvironmentVariable(
+        name='GAZEBO_PLUGIN_PATH',
+        value=TextSubstitution(
+            text=f"{gazebo_plugin_path}:${{GAZEBO_PLUGIN_PATH}}"
+        )
+    )
+
+    allRosNode = [set_gazebo_plugin_path] + allRosNode
+
     return LaunchDescription(allRosNode)

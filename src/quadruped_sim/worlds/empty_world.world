@@ -25,6 +25,11 @@
         name="gz::sim::systems::Physics">
     </plugin>
 
+    <plugin
+        filename="libgaz_publisher.so"
+        name="GazPublisher">
+    </plugin>
+
     <!-- Plugin to enable spawning models dynamically -->
     <!-- <plugin
       filename="gz-sim-entity-factory-system"

@@ -58,3 +58,12 @@ gz sim cave_circuit_01_customized.sdf
 
 > **ℹ️ Note on the First Launch**
 > The **very first time** you run this command, Gazebo will need to download all the 3D cave models from the Ignition Fuel cloud. This process may take several minutes, and the Gazebo window may appear blank or unresponsive. This is normal. Subsequent launches will be much faster as the models will be loaded from a local cache.
+
+Añadir al README de worlds en el repositorio esto:
+
+## Datos externos
+
+La carpeta `models` no está incluida en el repositorio por su tamaño.  
+Para descargarla, este es el link del drive: [models](https://drive.google.com/drive/folders/1D0uMG3MZIO2is2i8dGqfqB7Hk6dC9R9_)
+
+Esta carpeta debe estar dentro de `src/quadruped_sim/worlds`

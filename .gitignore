@@ -3,7 +3,7 @@
 *.bak
 .env
 /docs/build/
-/home/saul/pjt_qdp/Quadruped-Project/src/quadruped_sim/worlds/models
+/src/quadruped_sim/worlds/models
 
 # Files generated during ROS compilation
 /build/

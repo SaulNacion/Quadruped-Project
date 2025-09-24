@@ -11,6 +11,7 @@
 
   <!-- Dependencias que se necesitan para COMPILAR y EJECUTAR -->
   <depend>ros_gz_sim</depend>
+  <depend>ros_gz_interfaces</depend> <!-- añadido -->
   <depend>rclcpp</depend>
   <depend>rclcpp_components</depend>
 

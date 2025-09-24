@@ -118,7 +118,11 @@ def generate_launch_description():
         allRosNode = [
             SetEnvironmentVariable(
                 'GZ_SIM_RESOURCE_PATH',
-                PathJoinSubstitution([packagepath, 'models'])
+                [
+                    PathJoinSubstitution([packagepath, 'models']),
+                    TextSubstitution(text=':'),
+                    PathJoinSubstitution([packagepath, 'worlds', 'models'])
+                ]
             ),
             gz_sim_launch
         ]
@@ -186,7 +190,7 @@ def generate_launch_description():
             executable='static_transform_publisher',
             name='static_tf_green',
             arguments=['0.8', '0', '0.5', '0', '0', '0',
-                       'robot_diferencial/chassis', 'robot_diferencial/chassis/gpu_lidar'],
+                       'robot_diferencial_sensors/chassis', 'robot_diferencial_sensors/chassis/gpu_lidar'],
             output='screen'
         )
 

@@ -8,6 +8,7 @@ endif()
 # --- DEPENDENCIAS ROS ---
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp_components REQUIRED)
+find_package(ros_gz_interfaces REQUIRED) # añadido
 find_package(ros_gz_sim REQUIRED)
 find_package(std_msgs REQUIRED)
 
@@ -27,6 +28,7 @@ target_link_libraries(gaz_publisher
 ament_target_dependencies(gaz_publisher
   rclcpp_components
   ros_gz_sim
+  ros_gz_interfaces # añadido
   std_msgs
 )
 

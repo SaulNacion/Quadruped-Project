@@ -6,7 +6,7 @@ echo "Project folder: $QUADRUPEP_PROJECT_FOLDER"
 
 export CONFIG_DIR="${QUADRUPEP_PROJECT_FOLDER}/config"
 
-echo "Config dolfer: $CONFIG_DIR"
+echo "Config folder: $CONFIG_DIR"
 
 echo "========================"
 echo "==== Menú de Aliases Quadruped ===="

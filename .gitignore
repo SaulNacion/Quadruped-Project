@@ -2,6 +2,7 @@
 *.swp
 *.bak
 .env
+.vscode/
 /docs/build/
 /src/quadruped_sim/worlds/models
 

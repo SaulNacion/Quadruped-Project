@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version='1.11'>
+  <model name='Pata_URDF'>
+
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/robot_namespace</robotNamespace>
+      <controlPeriod>0.01</controlPeriod>
+    </plugin>
+
+    <link name='base_link'>
+      <inertial>
+        <pose>-1.1083e-05 -0.00011256000000000001 -0.02069 0 0 0</pose>
+        <mass>0.53000000000000003</mass>
+        <inertia>
+          <ixx>1.5216999999999999e-07</ixx>
+          <ixy>-7.5029999999999998e-11</ixy>
+          <ixz>-4.6806999999999998e-11</ixz>
+          <iyy>1.4719999999999999e-07</iyy>
+          <iyz>-4.7571999999999999e-10</iyz>
+          <izz>2.4922e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://Pata_URDF/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://Pata_URDF/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='Joint_1' type='revolute'>
+      <pose relative_to='base_link'>0 0 0 1.5708 0 0</pose>
+      <parent>base_link</parent>
+      <child>Link_1</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>3.1415999999999999</upper>
+          <effort>23.699999999999999</effort>
+          <velocity>30</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link_1'>
+      <pose relative_to='Joint_1'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0053742 -2.5859000000000001e-05 0.12078 0 0 0</pose>
+        <mass>2</mass>
+        <inertia>
+          <ixx>0.0058995999999999996</ixx>
+          <ixy>1.3959000000000001e-06</ixy>
+          <ixz>0.0010434999999999999</ixz>
+          <iyy>0.0059473</iyy>
+          <iyz>-1.415e-06</iyz>
+          <izz>0.0018148999999999999</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link_1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://Pata_URDF/meshes/Link_1.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link_1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://Pata_URDF/meshes/Link_1.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990199983 1 1 1</diffuse>
+          <ambient>0.990199983 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='Joint_2' type='revolute'>
+      <pose relative_to='Link_1'>-0.061550000000000001 0 0.18861 1.5708 -0.70726000000000033 -1.5708000000000002</pose>
+      <parent>Link_1</parent>
+      <child>Link_2</child>
+      <axis>
+        <xyz>-1 0 0</xyz>
+        <limit>
+          <lower>-3.1415999999999999</lower>
+          <upper>1.5708</upper>
+          <effort>49</effort>
+          <velocity>15</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link_2'>
+      <pose relative_to='Joint_2'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.23921999999999999 -2.8413999999999999e-05 0.056715000000000002 0 0 0</pose>
+        <mass>2</mass>
+        <inertia>
+          <ixx>0.0028089</ixx>
+          <ixy>-5.4172000000000004e-06</ixy>
+          <ixz>-0.0032850000000000002</ixz>
+          <iyy>0.042001999999999998</iyy>
+          <iyz>-1.5204000000000001e-06</iyz>
+          <izz>0.042611999999999997</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link_2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://Pata_URDF/meshes/Link_2.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link_2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://Pata_URDF/meshes/Link_2.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990199983 1 1 1</diffuse>
+          <ambient>0.990199983 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='Joint_3' type='revolute'>
+      <pose relative_to='Link_2'>0.38113000000000002 0 0.1128 0 0 2.5303</pose>
+      <parent>Link_2</parent>
+      <child>Link_3</child>
+      <axis>
+        <xyz>-1 0 0</xyz>
+        <limit>
+          <lower>-3.1415999999999999</lower>
+          <upper>3.1415999999999999</upper>
+          <effort>29</effort>
+          <velocity>10</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link_3'>
+      <pose relative_to='Joint_3'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.29681000000000002 1.0191e-07 0.033140000000000003 0 0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.00093021</ixx>
+          <ixy>-2.8962000000000002e-08</ixy>
+          <ixz>0.00046128</ixz>
+          <iyy>0.031543000000000002</iyy>
+          <iyz>5.0071000000000002e-09</iyz>
+          <izz>0.031567999999999999</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link_3_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://Pata_URDF/meshes/Link_3.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link_3_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://Pata_URDF/meshes/Link_3.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990199983 1 1 1</diffuse>
+          <ambient>0.990199983 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

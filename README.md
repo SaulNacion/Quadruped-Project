@@ -42,7 +42,18 @@ Este proyecto es desarrollado por alumnos y supervisores de la Universidad Nacio
 For installation instructions, please visit the official tutorials:
 
 - [Ubuntu 24.04 installation guide](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview)  
-- [Gazebo installation guide](https://gazebosim.org/docs/latest/ros_installation/)  
+- [Gazebo installation guide](https://gazebosim.org/docs/latest/ros_installation/) 
+
+### ⚠️ Observación de la instalaciôn de Gazebo
+
+> **Importante:** Para que el archivo de lanzamiento (`launch file`) funcione correctamente, es necesario instalar Gazebo usando su integración oficial con ROS. No utilices otros métodos de instalación (como paquetes independientes o Flatpak), ya que podrían causar errores al lanzar el entorno simulado.
+>  
+> Esto se debe a que el launch file configura automáticamente algunas rutas (`paths`) y espera que los paquetes de Gazebo estén disponibles en ubicaciones específicas, lo cual solo se garantiza al instalarlo con el siguiente comando:
+
+```bash
+sudo apt-get install ros-${ROS_DISTRO}-ros-gz
+```
+
 - [Jazzy installation guide](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html)  
 
 ---

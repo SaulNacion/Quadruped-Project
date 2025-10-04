@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <sdf version="1.6">
     <!-- Adding robot -->
-    <model name='robot_diferencial_sensors'>
+    <model name='robot_diferencial_sensors_lidar3D'>
         <!-- Create frame for lidar -->
         <frame name="lidar_frame" attached_to='chassis'>
             <pose>0.8 0 0.5 0 0 0</pose>
@@ -107,6 +107,36 @@
             <always_on>1</always_on>
             <visualize>true</visualize>
             </sensor>
+
+            <!-- Adding 3D Lidar sensor -->
+            <sensor name='gpu_lidar' type='gpu_lidar'>"
+            <pose relative_to='lidar_frame'>0 0 0 0 0 0</pose>
+            <topic>lidar</topic>
+            <update_rate>10</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>1024</samples>
+                        <resolution>1</resolution>
+                        <min_angle>-3.14159</min_angle>   <!-- 360° -->
+                        <max_angle>3.14159</max_angle>
+                    </horizontal>
+                    <vertical>
+                        <samples>16</samples>          <!-- Número de rayos verticales -->
+                        <resolution>1</resolution>     <!-- Mantener en 1 (1 muestra por rayo) -->
+                        <min_angle>-0.261799</min_angle> <!-- -15 grados en radianes -->
+                        <max_angle>0.261799</max_angle>  <!-- +15 grados en radianes -->
+                    </vertical>
+                </scan>
+                <range>
+                    <min>0.08</min>
+                    <max>100.0</max>
+                    <resolution>0.01</resolution>
+                </range>
+            </ray>
+            <always_on>1</always_on>
+            <visualize>true</visualize>
+            </sensor> 
         </link>
         
         <link name='left_wheel'>

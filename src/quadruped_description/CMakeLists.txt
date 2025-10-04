@@ -15,7 +15,6 @@ find_package(robot_state_publisher REQUIRED)
 
 
 install(DIRECTORY
-  Notspot
   DESTINATION share/${PROJECT_NAME}/
 
 )

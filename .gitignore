@@ -3,10 +3,14 @@
 *.bak
 .env
 .vscode/
-/docs/build/
-/src/quadruped_sim/worlds/models
+src/quadruped_sim/worlds/models
 
 # Files generated during ROS compilation
-/build/
-/install/
-/log/
+build/
+install/
+log/
+
+# Documentation files
+docs/
+.readthedocs.yml
+requierements.txt

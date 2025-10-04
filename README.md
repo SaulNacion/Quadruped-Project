@@ -35,40 +35,154 @@ Este proyecto es desarrollado por alumnos y supervisores de la Universidad Nacio
 
 ## Requirements / Requisitos
 
-- Ubuntu 24.04 LTS  
-- Gazebo Harmonic LTS 
-- ROS Jazzy LTS
+- Docker
+- Visual Studio Code
+- Dev Containers extension for easier development integration
 
 For installation instructions, please visit the official tutorials:
 
-- [Ubuntu 24.04 installation guide](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview)  
-- [Gazebo installation guide](https://gazebosim.org/docs/latest/ros_installation/) 
-
-### ⚠️ Observación de la instalaciôn de Gazebo
-
-> **Importante:** Para que el archivo de lanzamiento (`launch file`) funcione correctamente, es necesario instalar Gazebo usando su integración oficial con ROS. No utilices otros métodos de instalación (como paquetes independientes o Flatpak), ya que podrían causar errores al lanzar el entorno simulado.
->  
-> Esto se debe a que el launch file configura automáticamente algunas rutas (`paths`) y espera que los paquetes de Gazebo estén disponibles en ubicaciones específicas, lo cual solo se garantiza al instalarlo con el siguiente comando:
-
-```bash
-sudo apt-get install ros-${ROS_DISTRO}-ros-gz
-```
-
-- [Jazzy installation guide](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html)  
+- [Install Docker Engine](https://docs.docker.com/engine/install/)
+- [Install Visual Studio Code](https://code.visualstudio.com/)
+- [Install Dev Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
 ---
 
 ## Getting Started / Primeros pasos
 
-1. Clone this repository  
-2. Follow the official installation guides linked above to set up your environment  
-3. Build the project workspace according to your platform  (TODO)
-4. Launch simulations and control nodes as needed  (TODO)
+1. **Clone the `docker-nvidia-graphics` branch** (This is your development branch):
 
-📚 [Read the full project documentation here](https://hosting-quadruped-documentation.readthedocs.io/es/latest/index.html)  
+```bash
+   git clone -b docker-nvidia-graphics https://github.com/SaulNacion/Quadruped-Project.git
+   cd Quadruped-Project
+```
+
+2. **Pull the latest changes from the `main` branch** (or from another development branch, such as `quadruped_sim`, `quadruped_nav`, `quadruped_control`, etc.)
+
+```bash
+git pull origin main
+```
+
+* This will pull the latest changes from the `main` branch (or any other development branch you specify) while respecting the `.gitignore` rules of the development branch (i.e., files like documentation will not be downloaded or updated based on the `.gitignore`).
+
+---
+
+## Verify NVIDIA Container Toolkit
+
+The **NVIDIA Container Toolkit** is required for Docker to access your GPU. Follow these steps on your Ubuntu host:
+
+### Confirm Toolkit installation
+
+```bash
+nvidia-container-runtime --version
+```
+
+and:
+
+```bash
+dpkg -l | grep nvidia-container
+```
+
+If the toolkit is correctly installed, you should see details about the version and installed packages. If not, you will need to install it.
+
+### Install the Toolkit (if missing)
+
+Official guide: [NVIDIA Container Toolkit Installation](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+
+---
+
+## Preparing X11 Access for GUI Applications
+
+Before running the container, execute the `setup_x11_docker.sh` script to prepare your system to allow Docker containers to display graphical applications:
+
+```bash
+chmod +x setup_x11_docker.sh
+./setup_x11_docker.sh
+```
+
+After running the script, open the container with Visual Studio Code by using the **Command Palette** (`Ctrl+Shift+P`) and selecting **"Dev Container: Rebuild and Reopen in Container"**.
+
+To exit the container, simply choose **"Dev Container: Reopen Folder Locally"**.
+
+---
+
+## Running the Container
+
+To run the container for the first time, follow these steps:
+
+1. Execute `./setup_x11_docker.sh`.
+2. Open Visual Studio Code and select **"Dev Container: Rebuild and Reopen in Container"**.
+
+For subsequent use, use **"Dev Container: Reopen in Container"** from the Command Palette.
+
+---
+
+## Test GPU Access Inside the Container
+
+Once inside the container, test GPU access:
+
+```bash
+nvidia-smi
+glxinfo -B
+```
+
+* **`nvidia-smi`** → Displays NVIDIA driver stack information.
+* **`glxinfo -B`** → Look for `OpenGL vendor string: NVIDIA Corporation`.
+
+If successful, you can try running:
+
+```bash
+gazebo
+gz sim -v 4 shapes.sdf   # or: gz gui
+```
+
+---
+
+## How `setup_x11_docker.sh` Works
+
+This script sets up the X11 environment for Docker containers, ensuring that graphical applications can be displayed on your host system.
+
+1. **Define the X11 authentication file**:
+
+   ```bash
+   XAUTH=/tmp/.docker.xauth
+   ```
+
+2. **Clean and create the file**:
+
+   ```bash
+   rm -f "$XAUTH"
+   touch "$XAUTH"
+   ```
+
+3. **Export your X11 cookie**:
+
+   ```bash
+   xauth nlist "$DISPLAY" | sed -e 's/^..../ffff/' | \
+     xauth -f "$XAUTH" nmerge -
+   ```
+
+4. **Set permissions**:
+
+   ```bash
+   chmod 644 "$XAUTH"
+   ```
+
+5. **Allow Docker to connect locally**:
+
+   ```bash
+   xhost +local:docker
+   ```
+
+> 📄 **Summary**: This script copies your X11 cookie to a location accessible by Docker, adjusts permissions, and grants access so containers can open GUI windows on your desktop.
 
 ---
 
 ## Contact / Contacto
 
-For questions or contributions, please contact the project team.
+For questions or contributions, please contact:
+
+* **GitHub Username**: SaulNacion
+* **Email**: [saul.nacion.d@uni.pe](mailto:saul.nacion.d@uni.pe)
+
+---
+

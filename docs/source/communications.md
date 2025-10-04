@@ -1,1 +1,0 @@
-# Comunicación y Teleoperabilidad

@@ -1,0 +1,19 @@
+{
+  "name": "Quadruped Project",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "ros_jazzy",
+  "workspaceFolder": "/workspace/Quadruped-Project",
+  "shutdownAction": "stopCompose",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-python.python",
+        "ms-iot.vscode-ros",
+        "twxs.cmake",
+        "eamodio.gitlens"
+      ]
+    }
+  },
+  "postCreateCommand": "bash -lc 'echo DevContainer listo; source /opt/ros/jazzy/setup.bash'"
+}

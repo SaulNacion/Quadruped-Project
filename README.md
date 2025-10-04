@@ -69,8 +69,7 @@ To clone another development branch (e.g., `quadruped_sim`):
 git clone -b <develop-branch> https://github.com/SaulNacion/Quadruped-Project.git
 ```
 
-* This will clone the specified branch (e.g., `main` or any other development branch) into the current directory, while respecting the `.gitignore` rules of the development branch (i.e., files like documentation will not be downloaded or updated based on the `.gitignore`).
-
+* This will clone the specified branch (e.g., `main` or any other development branch) into the current directory.
 
 ---
 

@@ -16,6 +16,8 @@
 // Mensajes para publicar datos tipo double
 #include <gz/msgs/double.pb.h>
 
+#include <cstdlib>  // para std::getenv
+
 // Definición de la clase GazPublisher que hereda de System
 // e implementa la interfaz ISystemConfigure
 class GazPublisher : public gz::sim::System,
@@ -30,11 +32,21 @@ public:
     {
         // Crear un nodo de transporte para publicar y suscribirse a topics
         node = std::make_unique<gz::transport::Node>();
-        
-        // Suscribirse al tópico del reloj de la simulación
-        if (!node->Subscribe("/world/empty_world/clock", &GazPublisher::OnClock, this))
+
+         // Leer variable de entorno WORLD_NAME (la defines en tu launch file)
+        const char* worldEnv = std::getenv("WORLD_NAME");
+        if (worldEnv == nullptr)
         {
-            std::cerr << "Error al suscribirse al tópico [/world/empty_world/clock]" << std::endl;
+            std::cerr << "[GazPublisher] ERROR: WORLD_NAME not defined." << std::endl;
+            return; // Stopping configuration
+        }        
+        std::string worldName(worldEnv);
+        std::string clockTopic = "/world/" + worldName + "/clock";
+
+        // Suscribirse al tópico del reloj de la simulación
+        if (!node->Subscribe(clockTopic, &GazPublisher::OnClock, this))
+        {
+            std::cerr << "Error al suscribirse al tópico [" << clockTopic << "]" << std::endl;        
         }
 
         // Anunciar un nuevo tópico para publicar valores tipo double

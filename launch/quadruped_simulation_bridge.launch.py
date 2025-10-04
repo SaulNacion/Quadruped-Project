@@ -96,6 +96,11 @@ def generate_launch_description():
 
     # Simulator Launch 
     if node_ros.get('state', False):
+        world_runtime_name, _ = os.path.splitext(world)
+        set_world_name = SetEnvironmentVariable(
+            name='WORLD_NAME',
+            value=world_runtime_name
+        )
         gz_sim_launch = IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 PathJoinSubstitution([
@@ -116,6 +121,7 @@ def generate_launch_description():
         )
 
         allRosNode = [
+            set_world_name,
             SetEnvironmentVariable(
                 'GZ_SIM_RESOURCE_PATH',
                 [
@@ -134,7 +140,16 @@ def generate_launch_description():
                 EnvironmentVariable('GZ_SIM_RESOURCE_PATH')
             ]
         )
-        allRosNode.append(log_gz_resource_path)       
+        allRosNode.append(log_gz_resource_path)  
+
+        # Printing WORLD_NAME to check
+        log_world_name = LogInfo(
+            msg=[
+                'WORLD_NAME set to: ',
+                EnvironmentVariable('WORLD_NAME')
+            ]
+        )
+        allRosNode.append(log_world_name)     
 
          # Spawning Models
         for model_config in models_to_load:

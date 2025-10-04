@@ -55,14 +55,22 @@ For installation instructions, please visit the official tutorials:
    git clone -b docker-nvidia-graphics https://github.com/SaulNacion/Quadruped-Project.git
    cd Quadruped-Project
 ```
+2. **Clone the repository for the required branch** (e.g., `main`, or another development branch such as `quadruped_sim`, `quadruped_nav`, `quadruped_control`, etc.):
 
-2. **Pull the latest changes from the `main` branch** (or from another development branch, such as `quadruped_sim`, `quadruped_nav`, `quadruped_control`, etc.)
+   To clone the `main` branch:
 
 ```bash
-git pull origin main
+   git clone https://github.com/SaulNacion/Quadruped-Project.git .
 ```
 
-* This will pull the latest changes from the `main` branch (or any other development branch you specify) while respecting the `.gitignore` rules of the development branch (i.e., files like documentation will not be downloaded or updated based on the `.gitignore`).
+To clone another development branch (e.g., `quadruped_sim`):
+
+```bash
+git clone -b <develop-branch> https://github.com/SaulNacion/Quadruped-Project.git .
+```
+
+* This will clone the specified branch (e.g., `main` or any other development branch) into the current directory, while respecting the `.gitignore` rules of the development branch (i.e., files like documentation will not be downloaded or updated based on the `.gitignore`).
+
 
 ---
 

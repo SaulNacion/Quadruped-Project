@@ -3,14 +3,4 @@
 *.bak
 .env
 .vscode/
-src/quadruped_sim/worlds/models
-
-# Files generated during ROS compilation
-build/
-install/
-log/
-
-# Documentation files
-docs/
-.readthedocs.yml
-requierements.txt
+Quadruped-Project/

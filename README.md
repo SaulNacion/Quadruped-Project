@@ -60,13 +60,13 @@ For installation instructions, please visit the official tutorials:
    To clone the `main` branch:
 
 ```bash
-   git clone https://github.com/SaulNacion/Quadruped-Project.git .
+   git clone https://github.com/SaulNacion/Quadruped-Project.git
 ```
 
 To clone another development branch (e.g., `quadruped_sim`):
 
 ```bash
-git clone -b <develop-branch> https://github.com/SaulNacion/Quadruped-Project.git .
+git clone -b <develop-branch> https://github.com/SaulNacion/Quadruped-Project.git
 ```
 
 * This will clone the specified branch (e.g., `main` or any other development branch) into the current directory, while respecting the `.gitignore` rules of the development branch (i.e., files like documentation will not be downloaded or updated based on the `.gitignore`).

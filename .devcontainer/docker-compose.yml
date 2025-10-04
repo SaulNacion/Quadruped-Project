@@ -21,7 +21,7 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - /tmp/.docker.xauth:/tmp/.docker.xauth:ro
-      - ../:/workspace/Quadruped-Project:cached
+      - ../Quadruped-Project:/workspace/Quadruped-Project:cached
     deploy:
       resources:
         reservations:

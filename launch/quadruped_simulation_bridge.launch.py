@@ -68,7 +68,7 @@ def generate_launch_description():
     print(f'+ {"Simulator":^10} + {"package path":^70} + {"world":^20} + {"model"}')
     
     allRosNode = []
-
+    x = 2
     node_info = indexed_simulator_list.get('gazebo', None)
     
     if node_info:

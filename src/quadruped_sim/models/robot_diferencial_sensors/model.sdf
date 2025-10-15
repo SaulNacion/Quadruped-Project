@@ -206,14 +206,14 @@
             <pose relative_to='left_wheel'/>
             <parent>chassis</parent>
             <child>left_wheel</child>
-            <axis><xyz>0 1 0</xyz></axis>
+            <axis><xyz expressed_in='__model__'>0 1 0</xyz></axis>
         </joint>
         
         <joint name='right_wheel_joint' type='revolute'>
             <pose relative_to='right_wheel'/>
             <parent>chassis</parent>
             <child>right_wheel</child>
-            <axis><xyz>0 1 0</xyz></axis>
+            <axis><xyz expressed_in='__model__'>0 1 0</xyz></axis>
         </joint>
         
         <joint name='caster_wheel' type='ball'>

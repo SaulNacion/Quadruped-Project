@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <sdf version="1.6">
     <!-- Adding robot -->
-    <model name='robot_diferencial_sensors'>
+    <model name='robot_diferencial_sensors_lidar3D'>
         <!-- Create frame for lidar -->
         <frame name="lidar_frame" attached_to='chassis'>
             <pose>0.8 0 0.5 0 0 0</pose>
@@ -78,12 +78,12 @@
                 <topic>camera/depth/image_raw</topic>
             </sensor>
 
-            <!-- Adding 2D Lidar sensor -->
+            <!-- Adding 3D Lidar sensor -->
             <sensor name='gpu_lidar' type='gpu_lidar'>"
             <pose relative_to='lidar_frame'>0 0 0 0 0 0</pose>
             <topic>lidar</topic>
             <update_rate>10</update_rate>
-            <lidar>
+            <ray>
                 <scan>
                     <horizontal>
                         <samples>1024</samples>
@@ -92,21 +92,21 @@
                         <max_angle>3.14159</max_angle>
                     </horizontal>
                     <vertical>
-                        <samples>1</samples>          <!-- Número de rayos verticales -->
-                        <resolution>1</resolution>    
-                        <min_angle>0.0</min_angle> <!-- -15 grados en radianes -->
-                        <max_angle>0.0</max_angle>  <!-- +15 grados en radianes -->
+                        <samples>16</samples>          <!-- Número de rayos verticales -->
+                        <resolution>1</resolution>     <!-- Mantener en 1 (1 muestra por rayo) -->
+                        <min_angle>-0.261799</min_angle> <!-- -15 grados en radianes -->
+                        <max_angle>0.261799</max_angle>  <!-- +15 grados en radianes -->
                     </vertical>
                 </scan>
                 <range>
-                    <min>0.5</min>
+                    <min>0.08</min>
                     <max>100.0</max>
-                    <resolution>0</resolution>
+                    <resolution>0.01</resolution>
                 </range>
-            </lidar>
+            </ray>
             <always_on>1</always_on>
             <visualize>true</visualize>
-            </sensor>
+            </sensor> 
         </link>
         
         <link name='left_wheel'>
@@ -129,14 +129,6 @@
             </visual>
             <collision name='collision'>
                 <geometry><cylinder><radius>0.4</radius><length>0.2</length></cylinder></geometry>
-                <surface>
-                    <friction>
-                        <ode>
-                            <mu>1.0</mu>     <!-- Coeficiente de fricción estática -->
-                            <mu2>0.8</mu2>    <!-- Coeficiente de fricción dinámica -->
-                        </ode>
-                    </friction>
-                </surface>
             </collision>
         </link>
         
@@ -160,14 +152,6 @@
             </visual>
             <collision name='collision'>
                 <geometry><cylinder><radius>0.4</radius><length>0.2</length></cylinder></geometry>
-                <surface>
-                    <friction>
-                        <ode>
-                            <mu>1.0</mu>     <!-- Coeficiente de fricción estática -->
-                            <mu2>0.8</mu2>    <!-- Coeficiente de fricción dinámica -->
-                        </ode>
-                    </friction>
-                </surface>
             </collision>
         </link>
         
@@ -191,14 +175,6 @@
             </visual>
             <collision name='collision'>
                 <geometry><sphere><radius>0.2</radius></sphere></geometry>
-                <surface>
-                    <friction>
-                        <ode>
-                            <mu>1.0</mu>     <!-- Coeficiente de fricción estática -->
-                            <mu2>0.8</mu2>    <!-- Coeficiente de fricción dinámica -->
-                        </ode>
-                    </friction>
-                </surface>
             </collision>
         </link>
         
@@ -206,14 +182,14 @@
             <pose relative_to='left_wheel'/>
             <parent>chassis</parent>
             <child>left_wheel</child>
-            <axis><xyz>0 1 0</xyz></axis>
+            <axis><xyz expressed_in='__model__'>0 1 0</xyz></axis>
         </joint>
         
         <joint name='right_wheel_joint' type='revolute'>
             <pose relative_to='right_wheel'/>
             <parent>chassis</parent>
             <child>right_wheel</child>
-            <axis><xyz>0 1 0</xyz></axis>
+            <axis><xyz expressed_in='__model__'>0 1 0</xyz></axis>
         </joint>
         
         <joint name='caster_wheel' type='ball'>
@@ -228,7 +204,7 @@
             <right_joint>right_wheel_joint</right_joint>
             <wheel_separation>1.2</wheel_separation>
             <wheel_radius>0.4</wheel_radius>
-            <odom_publish_frequency>50</odom_publish_frequency>
+            <odom_publish_frequency>1</odom_publish_frequency>
             <topic>/turtle1/cmd_vel</topic>
         </plugin>
     </model>

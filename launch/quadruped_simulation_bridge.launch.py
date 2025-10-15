@@ -11,6 +11,7 @@ from launch.substitutions import PathJoinSubstitution, TextSubstitution
 from launch_ros.substitutions import FindPackageShare
 
 from launch.actions import LogInfo
+from launch.actions import TimerAction
 from launch.substitutions import EnvironmentVariable
 
 from ros_gz_bridge.actions import RosGzBridge
@@ -110,12 +111,14 @@ def generate_launch_description():
                 ])
             ),
             launch_arguments={
-                'gz_args': PathJoinSubstitution([
-                    packagepath,
-                    'worlds',
-                    world
-                ]),
-                # 'extra_gz_args': extra_gz_args_string, # Models not working, service for creation very slow
+                'gz_args': [
+                    PathJoinSubstitution([
+                        packagepath,
+                        'worlds',
+                        world
+                    ]),
+                    ' -r'
+                ],
                 'on_exit_shutdown': 'True'
             }.items()
         )
@@ -157,7 +160,17 @@ def generate_launch_description():
             if not model_uri:
                 print(f"WARNING: Model configuration in YAML missing 'uri' key: {model_config}")
                 continue
-            model_path = os.path.join(packagepath, 'models', model_uri, 'model.sdf')
+            model_dir = os.path.join(packagepath, 'models', model_uri)
+            sdf_path = os.path.join(model_dir, 'model.sdf')
+            urdf_path = os.path.join(model_dir, 'model.urdf')
+
+            if os.path.exists(sdf_path):
+                model_path = sdf_path
+            elif os.path.exists(urdf_path):
+                model_path = urdf_path
+            else:
+                print(f"ERROR: urdf or sdf file not founded {model_uri}")
+                continue
 
             world_runtime_name, _ = os.path.splitext(world)
             spawn_args = [
@@ -193,21 +206,36 @@ def generate_launch_description():
         bridge_name = "ros_gz_bridge"
         config_bridge_file = os.path.join(os.getenv('CONFIG_DIR'), 'ros_bridge.yaml')
 
-        bridge_config = RosGzBridge(
-                bridge_name=bridge_name,
-                config_file=config_bridge_file,
-            )
+        bridge_config = Node(
+            package='ros_gz_bridge',
+            executable='parameter_bridge',
+            name=bridge_name,
+            output='screen',
+            parameters=[
+                {'config_file': config_bridge_file}, 
+                {'use_sim_time': True}             
+            ]
+        )
         
         allRosNode.append(bridge_config)
 
         config_tf = Node(
             package='tf2_ros',
             executable='static_transform_publisher',
-            name='static_tf_green',
+            name='static_tf',
             arguments=['0.8', '0', '0.5', '0', '0', '0',
                        'robot_diferencial_sensors/chassis', 'robot_diferencial_sensors/chassis/gpu_lidar'],
-            output='screen'
+            output='screen', 
+            parameters=[{'use_sim_time': True}]
         )
+
+        # config_tf = Node(
+        #     package='quadruped_sim',
+        #     executable='dynamic_tf_publisher',
+        #     name='static_tf',
+        #     output='screen', 
+        #     parameters=[{'use_sim_time': True}]
+        # )
 
         allRosNode.append(config_tf)
     else:
@@ -278,5 +306,38 @@ def generate_launch_description():
     )
 
     allRosNode = [set_gazebo_plugin_path] + allRosNode
+
+    config_slam = os.path.join(os.getenv('CONFIG_DIR'), 'mapper_params_online_sync.yaml')
+    slam_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            os.path.join(
+                get_package_share_directory('slam_toolbox'),
+                'launch',
+                'online_async_launch.py'
+            )
+        ]),
+        launch_arguments={
+            'slam_params_file': config_slam,
+            'use_sim_time': 'true'
+        }.items(),
+    )
+
+    # Retrasar 10 segundos el lanzamiento del SLAM
+    delayed_slam_launch = TimerAction(period=20.0, actions=[slam_launch])
+
+    allRosNode = [delayed_slam_launch] + allRosNode
+    
+    rviz_config_file = os.path.join(os.getenv('CONFIG_DIR'), 'slam_toolbox_default.rviz')
+    # Nodo de RViz2
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        output='screen',
+        arguments=['-d', rviz_config_file], # El argumento -d carga la configuración
+        parameters=[{'use_sim_time': True}] 
+    )
+
+    allRosNode.append(rviz_node)
 
     return LaunchDescription(allRosNode)

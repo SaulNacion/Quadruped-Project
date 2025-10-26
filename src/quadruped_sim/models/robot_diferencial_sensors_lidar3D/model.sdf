@@ -205,7 +205,7 @@
             <wheel_separation>1.2</wheel_separation>
             <wheel_radius>0.4</wheel_radius>
             <odom_publish_frequency>1</odom_publish_frequency>
-            <topic>/turtle1/cmd_vel</topic>
+            <topic>/cmd_vel</topic>
         </plugin>
     </model>
 </sdf>

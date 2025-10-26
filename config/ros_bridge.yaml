@@ -1,7 +1,7 @@
 # Warning : tf and odometry must be changed according the name of robot
 # Full set of configurations
-- ros_topic_name: "turtle1/cmd_vel"
-  gz_topic_name: "/turtle1/cmd_vel"
+- ros_topic_name: "/cmd_vel"
+  gz_topic_name: "/cmd_vel"
   ros_type_name: "geometry_msgs/msg/Twist"
   gz_type_name: "gz.msgs.Twist"
   subscriber_queue: 10

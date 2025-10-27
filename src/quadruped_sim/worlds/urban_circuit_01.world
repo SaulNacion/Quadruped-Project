@@ -6,6 +6,7 @@
       <real_time_factor>1.0</real_time_factor>
       <real_time_update_rate>100</real_time_update_rate>
     </physics>
+
     <scene>
       <ambient>0.588235 0.588235 0.588235 1</ambient>
       <background>0.980392 0.980392 0.980392 1</background>
@@ -16,6 +17,40 @@
       <temperature>288</temperature>
       <temperature_gradient>0.7</temperature_gradient>
     </atmosphere>
+
+    <!-- These lines must be added to each world in the repository in order to enable using sensors and spawning robots -->
+    <!-- Adding manually some plugins, needed after adding sensors  -->
+    <plugin
+        filename="gz-sim-physics-system"
+        name="gz::sim::systems::Physics">
+    </plugin>
+
+    <plugin
+        filename="libgaz_publisher.so"
+        name="GazPublisher">
+    </plugin>
+
+    <!-- Plugin to enable spawning models dynamically -->
+    <plugin
+        filename="gz-sim-user-commands-system"
+        name="gz::sim::systems::UserCommands">
+    </plugin>
+
+    <plugin
+        filename="gz-sim-scene-broadcaster-system"
+        name="gz::sim::systems::SceneBroadcaster">
+    </plugin>
+
+    <!-- Plugin for sensors  -->
+    <plugin filename="gz-sim-imu-system"
+        name="gz::sim::systems::Imu">
+    </plugin>
+
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
 
     <include>
       <static>true</static>

@@ -1,0 +1,134 @@
+# ==============================================================================
+# RKO-LIO Configuration File - Para robot_diferencial_sensors
+# ==============================================================================
+# Topics: /lidar, /imu
+# Frames: robot_diferencial_sensors/chassis, robot_diferencial_sensors/chassis/gpu_lidar, robot_diferencial_sensors/odom
+# ==============================================================================
+
+# ==============================================================================
+# CONFIGURACIÓN BÁSICA
+# ==============================================================================
+mode: "online"
+
+# ==============================================================================
+# TOPICS (según tu ros2 topic list)
+# ==============================================================================
+lidar_topic: "/lidar_with_time"
+imu_topic: "/imu"
+
+# ==============================================================================
+# FRAMES (según tu RViz2)
+# ==============================================================================
+base_frame: "robot_diferencial_sensors/chassis"
+lidar_frame: "robot_diferencial_sensors/chassis/gpu_lidar"
+imu_frame: "robot_diferencial_sensors/chassis"  # Asumiendo IMU en chassis
+map_frame: "map"
+odom_frame: "robot_diferencial_sensors/odom"
+
+# ==============================================================================
+# EXTRINSICS (SENSOR MOUNTING)
+# ==============================================================================
+# Formato: [qx, qy, qz, qw, tx, ty, tz]
+# 
+# IMPORTANTE: Estos valores dependen de tu URDF/modelo
+# Para obtener valores reales ejecuta mientras corres tu simulación:
+# ros2 run tf2_ros tf2_echo robot_diferencial_sensors/chassis robot_diferencial_sensors/chassis/gpu_lidar
+#
+# Valores placeholder (ajustar según tu robot):
+extrinsic_lidar2base_quat_xyzw_xyz: [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.10]
+extrinsic_imu2base_quat_xyzw_xyz: [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0]
+
+# ==============================================================================
+# FILTRADO DE LIDAR
+# ==============================================================================
+min_range: 0.5            # Robots más pequeños pueden tener rango mínimo menor
+max_range: 50.0           # Ajustar según alcance de tu LiDAR
+
+max_points_per_scan: 100000   # Ajustar según densidad de tu LiDAR
+
+use_pointcloud_filter: true
+clip_radius: 0.3          # Radio más pequeño para robot diferencial
+
+# ==============================================================================
+# VOXELIZACIÓN (DOWNSAMPLING)
+# ==============================================================================
+voxel_size: 0.3           # Más pequeño para robot diferencial (ambientes más pequeños)
+max_points_per_voxel: 20
+double_downsample: true
+
+# ==============================================================================
+# MODELO DE MOVIMIENTO IMU
+# ==============================================================================
+perform_time_sync: true
+deskew: true
+max_expected_jerk: 5.0    # Mayor para robots diferenciales (giros más bruscos)
+
+# ==============================================================================
+# REGULARIZACIÓN ADAPTATIVA
+# ==============================================================================
+min_beta: 150.0
+
+# ==============================================================================
+# ICP (ITERATIVE CLOSEST POINT)
+# ==============================================================================
+max_iterations: 50
+max_correspondance_distance: 0.5
+convergence_criterion: 0.00001
+
+# ==============================================================================
+# MAPA LOCAL
+# ==============================================================================
+publish_local_map: true
+map_topic: "/rko_lio/local_map"
+publish_map_after: 1.0
+local_map_size: 30.0      # Más pequeño para ambientes interiores
+
+# ==============================================================================
+# TRANSFORMACIONES (TF)
+# ==============================================================================
+publish_tf: true
+publish_odom_tf: true
+invert_tf: false
+
+# ==============================================================================
+# INICIALIZACIÓN
+# ==============================================================================
+initialization_phase: true
+gravity_magnitude: 9.81
+
+# ==============================================================================
+# THREADING Y PERFORMANCE
+# ==============================================================================
+max_num_threads: 0
+
+# ==============================================================================
+# LOGGING Y DEBUG
+# ==============================================================================
+verbose: true
+log_level: "info"
+
+save_trajectory: true
+trajectory_output_path: "/home/luigidu/rko_lio_trajectory_robot_diferencial.txt"
+
+# ==============================================================================
+# PARÁMETROS AVANZADOS
+# ==============================================================================
+adaptive_threshold: true
+initial_threshold: 2.0
+
+scan_buffer_size: 200
+imu_buffer_size: 500
+
+# ==============================================================================
+# COMANDOS PARA EJECUTAR
+# ==============================================================================
+#
+# Terminal 1 - Launch RKO-LIO:
+# ros2 launch rko_lio online.launch.py config:=/path/to/this/config.yaml
+#
+# Terminal 2 - Tu simulación/aplicación que publica /lidar e /imu
+#
+# Terminal 3 - Visualizar en RViz2:
+# rviz2
+#
+# ==============================================================================

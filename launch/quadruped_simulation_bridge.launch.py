@@ -322,15 +322,6 @@ def generate_launch_description():
         }.items(),
     )
 
-    lidar_timestamp = Node(
-            package='rko_lio',
-            executable='lidar_timestamp.py',
-            name='lidar_timestamp_node',
-            output='screen',
-        )
-
-    allRosNode.append(lidar_timestamp)
-
     config_slam_3d = os.path.join(os.getenv('CONFIG_DIR'), 'rko_lio_config.yaml')
     slam_3d_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
@@ -348,6 +339,15 @@ def generate_launch_description():
             'base_frame': 'robot_diferencial_sensors/chassis'
         }.items(),
     )
+
+    lidar_timestamp = Node(
+            package='common_utils',
+            executable='lidar_timestamp.py',
+            name='lidar_timestamp_node',
+            output='screen',
+        )
+    
+    allRosNode.append(lidar_timestamp)
 
     # Retrasar 10 segundos el lanzamiento del SLAM
     delayed_slam_launch = TimerAction(period=20.0, actions=[slam_launch])

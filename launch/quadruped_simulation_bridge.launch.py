@@ -322,10 +322,39 @@ def generate_launch_description():
         }.items(),
     )
 
+    config_slam_3d = os.path.join(os.getenv('CONFIG_DIR'), 'rko_lio_config.yaml')
+    slam_3d_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            os.path.join(
+                get_package_share_directory('rko_lio'),
+                'launch',
+                'odometry.launch.py'
+            )
+        ]),
+        launch_arguments={
+            'config_file': config_slam_3d,
+            'rviz': 'true',
+            'lidar_topic': 'lidar_with_time',
+            'imu_topic': 'imu',
+            'base_frame': 'robot_diferencial_sensors/chassis'
+        }.items(),
+    )
+
+    lidar_timestamp = Node(
+            package='common_utils',
+            executable='lidar_timestamp.py',
+            name='lidar_timestamp_node',
+            output='screen',
+        )
+    
+    allRosNode.append(lidar_timestamp)
+
     # Retrasar 10 segundos el lanzamiento del SLAM
     delayed_slam_launch = TimerAction(period=20.0, actions=[slam_launch])
 
-    allRosNode = [delayed_slam_launch] + allRosNode
+    delayed_slam_3d_launch = TimerAction(period=5.0, actions=[slam_3d_launch])
+
+    allRosNode = [delayed_slam_launch] + [delayed_slam_3d_launch] + allRosNode
     
     rviz_config_file = os.path.join(os.getenv('CONFIG_DIR'), 'slam_toolbox_default.rviz')
     # Nodo de RViz2

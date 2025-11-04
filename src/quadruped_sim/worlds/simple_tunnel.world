@@ -21,11 +21,11 @@
         filename="gz-sim-physics-system"
         name="gz::sim::systems::Physics">
     </plugin>
-
+    <!--
     <plugin
         filename="libgaz_publisher.so"
         name="GazPublisher">
-    </plugin>
+    </plugin>-->
 
     <!-- Plugin to enable spawning models dynamically -->
     <plugin
@@ -54,15 +54,8 @@
       <static>true</static>
       <name>base_station</name>
       <pose>0 0 0 0 0 0</pose>
-      <uri>https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/subt_tunnel_staging_area</uri>
+      <uri>model://subt_tunnel_staging_area</uri>
     </include>
-
-    <!-- Fiducial de origen para reportes -->
-    <include>
-      <name>artifact_origin</name>
-      <pose>10.0 0.0 0.0 0 0 0</pose>
-      <uri>https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Fiducial</uri>
-    </include> 
 
     <!-- Baldosas del túnel -->
     <include><name>tile_1</name>  <uri>model://tunnel_tile_5</uri> <pose>20.0   0.0 0.0 0 0 -1.570796</pose></include>
@@ -100,7 +93,6 @@
     <!-- Bloqueador final -->
     <include>
       <name>tile_32</name>
-      <!-- <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Tunnel%20Tile%20Blocker</uri> -->
       <uri>model://Tunnel Tile Blocker</uri>
       <pose>631.0 0.0 0.0 0 0 0.0</pose>
     </include>
@@ -111,6 +103,19 @@
       <pose>0 0 1 0 0 0</pose>
       <uri>model://CERBERUS_ANYMAL_B_SENSOR_CONFIG_1</uri>
     </include>  -->
+
+    <!-- Esto se usa para probar la pata; sujeta el link base_link para ver con claridad los demás movimientos 
+    <include>
+      <uri>model://Pata_URDF</uri>
+      <name>Pata_URDF</name>       
+      <pose>0 0 2 0 0 0</pose>
+    </include> 
+    
+    <joint name="fix_base_to_world" type="fixed">
+      <parent>world</parent>
+      <child>Pata_URDF::base_link</child>
+    </joint> -->
+
 
   </world>
 </sdf>

@@ -58,6 +58,14 @@ sudo apt-get install ros-${ROS_DISTRO}-ros-gz
 
 ---
 
+### ⚠️ Datos externos
+
+La carpeta `worlds/models` no está incluida en el repositorio por su tamaño.  
+Para descargarla, este es el link del drive: [models](https://drive.google.com/drive/folders/1D0uMG3MZIO2is2i8dGqfqB7Hk6dC9R9_)
+
+Esta carpeta debe estar dentro de `src/quadruped_sim/worlds`
+---
+
 ## Getting Started / Primeros pasos
 
 1. Clone this repository  

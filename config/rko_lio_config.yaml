@@ -9,7 +9,7 @@
 # CONFIGURACIÓN BÁSICA
 # ==============================================================================
 mode: "online"
-
+use_sim_time: true
 # ==============================================================================
 # TOPICS (según tu ros2 topic list)
 # ==============================================================================
@@ -44,7 +44,7 @@ extrinsic_imu2base_quat_xyzw_xyz: [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0]
 min_range: 0.5            # Robots más pequeños pueden tener rango mínimo menor
 max_range: 50.0           # Ajustar según alcance de tu LiDAR
 
-max_points_per_scan: 100000   # Ajustar según densidad de tu LiDAR
+max_points_per_scan: 20000   # Ajustar según densidad de tu LiDAR
 
 use_pointcloud_filter: true
 clip_radius: 0.3          # Radio más pequeño para robot diferencial
@@ -52,8 +52,8 @@ clip_radius: 0.3          # Radio más pequeño para robot diferencial
 # ==============================================================================
 # VOXELIZACIÓN (DOWNSAMPLING)
 # ==============================================================================
-voxel_size: 0.3           # Más pequeño para robot diferencial (ambientes más pequeños)
-max_points_per_voxel: 20
+voxel_size: 0.5           # Más pequeño para robot diferencial (ambientes más pequeños)
+max_points_per_voxel: 15
 double_downsample: true
 
 # ==============================================================================
@@ -116,8 +116,8 @@ trajectory_output_path: "/home/luigidu/rko_lio_trajectory_robot_diferencial.txt"
 adaptive_threshold: true
 initial_threshold: 2.0
 
-scan_buffer_size: 200
-imu_buffer_size: 500
+scan_buffer_size: 500
+imu_buffer_size: 1000
 
 # ==============================================================================
 # COMANDOS PARA EJECUTAR

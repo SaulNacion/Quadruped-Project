@@ -336,7 +336,8 @@ def generate_launch_description():
             'rviz': 'true',
             'lidar_topic': 'lidar_with_time',
             'imu_topic': 'imu',
-            'base_frame': 'robot_diferencial_sensors/chassis'
+            'base_frame': 'robot_diferencial_sensors/chassis',
+            'use_sim_time': 'true'
         }.items(),
     )
 

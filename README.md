@@ -38,6 +38,19 @@ Este proyecto es desarrollado por alumnos y supervisores de la Universidad Nacio
 - Ubuntu 24.04 LTS  
 - Gazebo Harmonic LTS 
 - ROS Jazzy LTS
+- RKO LIO
+```bash
+sudo apt-get install ros-${ROS_DISTRO}-rko-lio
+```
+- libunwind
+```bash
+sudo apt install -y libunwind-dev
+```
+- google-glog
+```bash
+sudo apt install -y libgoogle-glog-dev
+```
+> Agregar en CMakeLists.txt ubicado en quadruped_slam_3d/rko_lio la línea `find_package(glog REQUIRED)`
 
 For installation instructions, please visit the official tutorials:
 

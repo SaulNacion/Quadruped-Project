@@ -1,0 +1,91 @@
+# Warning : tf and odometry must be changed according the name of robot
+# Full set of configurations
+- ros_topic_name: "/cmd_vel"
+  gz_topic_name: "/cmd_vel"
+  ros_type_name: "geometry_msgs/msg/Twist"
+  gz_type_name: "gz.msgs.Twist"
+  subscriber_queue: 10
+  publisher_queue: 10
+  lazy: true
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "imu"
+  gz_topic_name: "/imu"
+  ros_type_name: "sensor_msgs/msg/Imu"
+  gz_type_name: "gz.msgs.IMU"
+  subscriber_queue: 10
+  publisher_queue: 10
+  lazy: true
+  direction: GZ_TO_ROS
+
+# Lidar 2D configuration
+- ros_topic_name: "/scan"
+  gz_topic_name: "/lidar" 
+  ros_type_name: "sensor_msgs/msg/LaserScan"
+  gz_type_name: "gz.msgs.LaserScan"
+  subscriber_queue: 10
+  publisher_queue: 10
+  lazy: true
+  direction: GZ_TO_ROS
+
+# Important topics to visualize information in rviz
+- ros_topic_name: "tf"
+  gz_topic_name: "/model/robot_diferencial_sensors/tf"
+  ros_type_name: "tf2_msgs/msg/TFMessage"
+  gz_type_name: "gz.msgs.Pose_V"
+  subscriber_queue: 10
+  publisher_queue: 10
+  lazy: true
+  direction: GZ_TO_ROS
+
+- gz_topic_name: "/model/robot_diferencial_sensors/odometry"
+  ros_topic_name : "/odom"
+  ros_type_name: "nav_msgs/msg/Odometry"
+  gz_type_name: "gz.msgs.Odometry"
+  lazy: true
+  direction: GZ_TO_ROS
+
+# RGB Camera topics
+- ros_topic_name: "camera/image_raw"
+  gz_topic_name: "/camera/image_raw"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  subscriber_queue: 10
+  publisher_queue: 10
+  lazy: true
+  direction: GZ_TO_ROS
+
+- ros_topic_name: "camera/camera_info"
+  gz_topic_name: "/camera/camera_info"
+  ros_type_name: "sensor_msgs/msg/CameraInfo"
+  gz_type_name: "gz.msgs.CameraInfo"
+  subscriber_queue: 10
+  publisher_queue: 10
+  lazy: true
+  direction: GZ_TO_ROS
+
+# Depth Camera topics
+- ros_topic_name: "camera/depth/image_raw"
+  gz_topic_name: "/camera/depth/image_raw"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  subscriber_queue: 10
+  publisher_queue: 10
+  lazy: true
+  direction: GZ_TO_ROS
+
+- ros_topic_name: "camera/depth/camera_info"
+  gz_topic_name: "/camera/depth/camera_info"
+  ros_type_name: "sensor_msgs/msg/CameraInfo"
+  gz_type_name: "gz.msgs.CameraInfo"
+  subscriber_queue: 10
+  publisher_queue: 10
+  lazy: true
+  direction: GZ_TO_ROS
+
+# Simulation clock:
+- ros_topic_name: "/clock"
+  gz_topic_name: "/clock"
+  ros_type_name: "rosgraph_msgs/msg/Clock"
+  gz_type_name: "gz.msgs.Clock"
+  direction: GZ_TO_ROS

@@ -12,7 +12,8 @@ from launch_ros.substitutions import FindPackageShare
 
 from launch.actions import LogInfo
 from launch.actions import TimerAction
-from launch.substitutions import EnvironmentVariable
+from launch.substitutions import EnvironmentVariable, Command
+from launch_ros.parameter_descriptions import ParameterValue
 
 from ros_gz_bridge.actions import RosGzBridge
 
@@ -154,8 +155,11 @@ def generate_launch_description():
         )
         allRosNode.append(log_world_name)     
 
+        entire_robot_project = False
          # Spawning Models
         for model_config in models_to_load:
+            if model_config.get('name') == "unitree_go2":
+                entire_robot_project = True
             model_uri = model_config.get('uri')
             if not model_uri:
                 print(f"WARNING: Model configuration in YAML missing 'uri' key: {model_config}")
@@ -203,21 +207,21 @@ def generate_launch_description():
             allRosNode.append(spawn_node)
 
         #   Bridge Launch 
-        bridge_name = "ros_gz_bridge"
-        config_bridge_file = os.path.join(os.getenv('CONFIG_DIR'), 'ros_bridge.yaml')
+        if entire_robot_project == False:
+            bridge_name = "ros_gz_bridge"
+            config_bridge_file = os.path.join(os.getenv('CONFIG_DIR'), 'ros_bridge.yaml')
 
-        bridge_config = Node(
-            package='ros_gz_bridge',
-            executable='parameter_bridge',
-            name=bridge_name,
-            output='screen',
-            parameters=[
-                {'config_file': config_bridge_file}, 
-                {'use_sim_time': True}             
-            ]
-        )
-        
-        allRosNode.append(bridge_config)
+            bridge_config = Node(
+                package='ros_gz_bridge',
+                executable='parameter_bridge',
+                name=bridge_name,
+                output='screen',
+                parameters=[
+                    {'config_file': config_bridge_file}, 
+                    {'use_sim_time': True}             
+                ]
+            )
+            allRosNode.append(bridge_config)
 
         config_tf = Node(
             package='tf2_ros',
@@ -228,14 +232,6 @@ def generate_launch_description():
             output='screen', 
             parameters=[{'use_sim_time': True}]
         )
-
-        # config_tf = Node(
-        #     package='quadruped_sim',
-        #     executable='dynamic_tf_publisher',
-        #     name='static_tf',
-        #     output='screen', 
-        #     parameters=[{'use_sim_time': True}]
-        # )
 
         allRosNode.append(config_tf)
     else:
@@ -346,28 +342,55 @@ def generate_launch_description():
             executable='lidar_timestamp.py',
             name='lidar_timestamp_node',
             output='screen',
+            parameters=[{'use_sim_time': True}]
         )
     
-    allRosNode.append(lidar_timestamp)
+    # allRosNode.append(lidar_timestamp)
 
     # Retrasar 10 segundos el lanzamiento del SLAM
     delayed_slam_launch = TimerAction(period=20.0, actions=[slam_launch])
 
     delayed_slam_3d_launch = TimerAction(period=5.0, actions=[slam_3d_launch])
 
-    allRosNode = [delayed_slam_launch] + [delayed_slam_3d_launch] + allRosNode
-    
-    rviz_config_file = os.path.join(os.getenv('CONFIG_DIR'), 'slam_toolbox_default.rviz')
-    # Nodo de RViz2
-    rviz_node = Node(
-        package='rviz2',
-        executable='rviz2',
-        name='rviz2',
-        output='screen',
-        arguments=['-d', rviz_config_file], # El argumento -d carga la configuración
-        parameters=[{'use_sim_time': True}] 
-    )
+    # allRosNode = [delayed_slam_launch] + [delayed_slam_3d_launch] + allRosNode
+    # allRosNode = [delayed_slam_3d_launch] + allRosNode
 
-    allRosNode.append(rviz_node)
+    if entire_robot_project == False:
+        rviz_config_file = os.path.join(os.getenv('CONFIG_DIR'), 'slam_toolbox_default.rviz')
+        # Nodo de RViz2
+        rviz_node = Node(
+            package='rviz2',
+            executable='rviz2',
+            name='rviz2',
+            output='screen',
+            arguments=['-d', rviz_config_file], # El argumento -d carga la configuración
+            parameters=[{'use_sim_time': True}] 
+        )
+        allRosNode.append(rviz_node)
+    
+    #---------------------#
+    ### Unitree Project ###
+    #---------------------# 
+    for model_config in models_to_load:
+        if model_config.get('name') == "unitree_go2":
+            model_pose = model_config.get('pose')
+            str(model_pose[0])
+
+            unitree_launch_path = PathJoinSubstitution([
+                FindPackageShare("unitree_go2_sim"),
+                "launch",
+                "unitree_go2_launch.py"
+            ])
+
+            unitree_launch = IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(unitree_launch_path),
+                launch_arguments={
+                    "world_init_x": str(model_pose[0]),
+                    "world_init_y": str(model_pose[1]),
+                    "world_init_z": str(model_pose[2]),
+                    "world_init_heading" : str(model_pose[3])
+                }.items()
+            )
+            allRosNode.append(unitree_launch)
 
     return LaunchDescription(allRosNode)

@@ -24,6 +24,13 @@ RUN apt-get update && apt-get install -y \
     libunwind-dev \
     libgoogle-glog-dev \  
     ros-jazzy-plotjuggler-ros \
+    ros-jazzy-gz-ros2-control \
+    ros-jazzy-xacro \
+    ros-jazzy-robot-localization \
+    ros-jazzy-ros2-controllers \
+    ros-jazzy-ros2-control \
+    ros-jazzy-velodyne \
+    ros-jazzy-velodyne-description \
  && rm -rf /var/lib/apt/lists/*
 
 

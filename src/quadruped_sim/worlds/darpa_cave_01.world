@@ -6,8 +6,8 @@
 <sdf version="1.8">
   <world name="simple_cave_01">
 
-    <physics name="1ms" type="dart">
-      <max_step_size>0.01</max_step_size>
+    <physics name="1ms" type="ode">
+      <max_step_size>0.004</max_step_size>
       <real_time_factor>1.0</real_time_factor>
       <real_time_update_rate>100</real_time_update_rate>
     </physics>

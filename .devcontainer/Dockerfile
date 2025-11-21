@@ -10,6 +10,19 @@ RUN apt-get update && apt-get install -y \
     sudo nano vim less \
  && rm -rf /var/lib/apt/lists/*
 
+# Instalación de Nav2, SLAM Toolbox, TurtleBot y utilidades para Gazebo Modern en ROS 2 Jazzy
+RUN apt-get update && apt-get install -y \
+    ros-jazzy-navigation2 \
+    ros-jazzy-nav2-bringup \
+    ros-jazzy-nav2-minimal-tb* \
+    ros-jazzy-slam-toolbox \
+    ros-jazzy-pointcloud-to-laserscan \
+    ros-jazzy-ros-gz-sim \
+    ros-jazzy-ros-gz-bridge \
+    ros-jazzy-rviz2 \
+ && rm -rf /var/lib/apt/lists/*
+
+
 # --- Configuración de usuario (para que coincida con el host y evitar problemas con permisos) ---
 ARG USER=dev
 ARG UID=1000

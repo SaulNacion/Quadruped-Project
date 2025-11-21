@@ -9,7 +9,6 @@
       "extensions": [
         "ms-vscode.cpptools",
         "ms-python.python",
-        "ms-iot.vscode-ros",
         "twxs.cmake",
         "eamodio.gitlens"
       ]

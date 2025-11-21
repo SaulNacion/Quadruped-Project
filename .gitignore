@@ -5,6 +5,7 @@
 .vscode/
 /docs/build/
 /src/quadruped_sim/worlds/models
+launch/__pycache__
 
 # Files generated during ROS compilation
 /build/

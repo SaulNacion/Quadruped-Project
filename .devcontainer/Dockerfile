@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y \
     ros-jazzy-ros2-control \
     ros-jazzy-velodyne \
     ros-jazzy-velodyne-description \
+    ros-jazzy-joint-state-publisher-gui \
  && rm -rf /var/lib/apt/lists/*
 
 

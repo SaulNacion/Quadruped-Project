@@ -40,6 +40,12 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
+install(
+  PROGRAMS
+    scripts/telemetry_node.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 # --- CONFIGURACIÓN DEL PAQUETE AMENT ---
 ament_export_dependencies(
   rclcpp_components

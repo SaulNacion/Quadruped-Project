@@ -15,5 +15,5 @@ echo "quad  -> Cargar workspace y lanzar simulación con bridge_ros"
 echo "========================"
 
 # alias quad="ros2 launch  $QUADRUPEP_PROJECT_FOLDER/launch/quadruped_simulation.launch.py"
-alias quad="ros2 launch  $QUADRUPEP_PROJECT_FOLDER/launch/quadruped_simulation_bridge.launch.py"
+alias quad="ros2 launch  $QUADRUPEP_PROJECT_FOLDER/launch/quadruped_simulation_bridge_plotjuggler.launch.py"
 alias sws="source  $QUADRUPEP_PROJECT_FOLDER/install/setup.bash"

@@ -206,7 +206,7 @@ def generate_launch_description():
         arguments=[
             # Gazebo to ROS
             '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
-            '/imu/data@sensor_msgs/msg/Imu@gz.msgs.IMU',
+            '/imu@sensor_msgs/msg/Imu@gz.msgs.IMU',
             '/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V',
             '/joint_states@sensor_msgs/msg/JointState@gz.msgs.Model',
             '/velodyne_points/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked',

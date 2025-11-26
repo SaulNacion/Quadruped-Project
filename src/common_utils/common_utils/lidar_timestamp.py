@@ -11,13 +11,13 @@ class AddLidarTimestamps(Node):
         
         self.subscription = self.create_subscription(
             PointCloud2,
-            '/lidar',
+            '/velodyne_points/points',
             self.lidar_callback,
             10)
         
         self.publisher = self.create_publisher(
             PointCloud2,
-            '/lidar_with_time',
+            '/velodyne_points/points_time',
             10)
         
         self.get_logger().info('🔧 Adding timestamps to /lidar → /lidar_with_time')

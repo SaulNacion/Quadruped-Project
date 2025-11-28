@@ -13,17 +13,17 @@ use_sim_time: true
 # ==============================================================================
 # TOPICS (según tu ros2 topic list)
 # ==============================================================================
-lidar_topic: "/lidar_with_time"
+lidar_topic: "/velodyne_points/points_time"
 imu_topic: "/imu"
 
 # ==============================================================================
 # FRAMES (según tu RViz2)
 # ==============================================================================
-base_frame: "robot_diferencial_sensors/chassis"
-lidar_frame: "robot_diferencial_sensors/chassis/gpu_lidar"
-imu_frame: "robot_diferencial_sensors/chassis"  # Asumiendo IMU en chassis
+base_frame: "base_link"
+lidar_frame: "velodyne"
+imu_frame: "imu_link"  # Asumiendo IMU en chassis
 map_frame: "map"
-odom_frame: "robot_diferencial_sensors/odom"
+odom_frame: "odom"
 
 # ==============================================================================
 # EXTRINSICS (SENSOR MOUNTING)
@@ -93,7 +93,7 @@ invert_tf: false
 # ==============================================================================
 # INICIALIZACIÓN
 # ==============================================================================
-initialization_phase: true
+initialization_phase: false
 gravity_magnitude: 9.81
 
 # ==============================================================================

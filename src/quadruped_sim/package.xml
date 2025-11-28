@@ -22,6 +22,8 @@
   <depend>champ_msgs</depend>
   <depend>geometry_msgs</depend>
 
+  <depend>olfaction_msgs</depend>
+
   <!-- Dependencia que solo se necesita para EJECUTAR -->
   <exec_depend>ros2launch</exec_depend>
   <exec_depend>plotjuggler</exec_depend>

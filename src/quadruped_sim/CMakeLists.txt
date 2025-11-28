@@ -11,6 +11,7 @@ find_package(rclcpp_components REQUIRED)
 find_package(ros_gz_interfaces REQUIRED) # añadido
 find_package(ros_gz_sim REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(olfaction_msgs REQUIRED)
 
 # --- DEPENDENCIAS DE GAZEBO (vendor packages de Jazzy) ---
 find_package(gz-sim8 REQUIRED)
@@ -32,18 +33,24 @@ ament_target_dependencies(gaz_publisher
   std_msgs
 )
 
+add_executable(gas_bridge_node src/gas_bridge_node.cpp)
+ament_target_dependencies(gas_bridge_node
+  rclcpp
+  std_msgs
+  olfaction_msgs
+)
+
+install(TARGETS
+  gas_bridge_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 # --- INSTALACIÓN ---
 install(TARGETS gaz_publisher DESTINATION lib)
 
 install(
   DIRECTORY worlds models
   DESTINATION share/${PROJECT_NAME}
-)
-
-install(
-  PROGRAMS
-    scripts/telemetry_node.py
-  DESTINATION lib/${PROJECT_NAME}
 )
 
 # --- CONFIGURACIÓN DEL PAQUETE AMENT ---

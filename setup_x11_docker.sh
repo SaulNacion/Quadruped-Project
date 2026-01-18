@@ -22,3 +22,6 @@ xhost +local:docker
 
 # chmod +x setup_x11_docker.sh
 # ./setup_x11_docker.sh
+
+# Nota: Para limpiar después de usar Docker, puedes ejecutar:
+# sudo rm -rf /tmp/.docker.xauth

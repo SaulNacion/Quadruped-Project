@@ -297,6 +297,6 @@ def generate_launch_description():
             controller_status_check,
             
             # Visualization (only if rviz flag is set)
-            rviz2,
+            #rviz2,
         ]
     )

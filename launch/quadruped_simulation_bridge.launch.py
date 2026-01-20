@@ -384,10 +384,12 @@ def generate_launch_description():
                     "world_init_x": str(model_pose[0]),
                     "world_init_y": str(model_pose[1]),
                     "world_init_z": str(model_pose[2]),
-                    "world_init_heading" : str(model_pose[3])
+                    "world_init_heading" : str(model_pose[3]), 
+                    "use_sim_time": "True"
                 }.items()
             )
             allRosNode.append(unitree_launch)
+
     allRosNode = [delayed_slam_3d_launch] + [lidar_timestamp] + allRosNode
 
 

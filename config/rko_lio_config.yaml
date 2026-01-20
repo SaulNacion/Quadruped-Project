@@ -93,7 +93,7 @@ invert_tf: false
 # ==============================================================================
 # INICIALIZACIÓN
 # ==============================================================================
-initialization_phase: false
+initialization_phase: true
 gravity_magnitude: 9.81
 
 # ==============================================================================
@@ -107,7 +107,7 @@ max_num_threads: 0
 verbose: true
 log_level: "info"
 
-save_trajectory: true
+save_trajectory: false
 trajectory_output_path: "/home/luigidu/rko_lio_trajectory_robot_diferencial.txt"
 
 # ==============================================================================

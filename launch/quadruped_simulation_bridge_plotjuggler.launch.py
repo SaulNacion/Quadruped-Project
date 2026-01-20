@@ -387,10 +387,9 @@ def generate_launch_description():
     # Retrasar 10 segundos el lanzamiento del SLAM
     delayed_slam_launch = TimerAction(period=20.0, actions=[slam_launch])
 
-    delayed_slam_3d_launch = TimerAction(period=5.0, actions=[slam_3d_launch])
+    delayed_slam_3d_launch = TimerAction(period=60.0, actions=[slam_3d_launch])
 
     # allRosNode = [delayed_slam_launch] + [delayed_slam_3d_launch] + allRosNode
-    # allRosNode = [delayed_slam_3d_launch] + allRosNode
 
     if entire_robot_project == False:
         rviz_config_file = os.path.join(os.getenv('CONFIG_DIR'), 'slam_toolbox_default.rviz')
@@ -429,5 +428,7 @@ def generate_launch_description():
                 }.items()
             )
             allRosNode.append(unitree_launch)
+
+    allRosNode = [delayed_slam_3d_launch] + [lidar_timestamp] + allRosNode
 
     return LaunchDescription(allRosNode)

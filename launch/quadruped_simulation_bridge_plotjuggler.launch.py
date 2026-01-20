@@ -5,7 +5,7 @@ from yaml.loader import SafeLoader
 
 from launch import LaunchDescription
 from launch_ros.actions import Node
-from launch.actions import IncludeLaunchDescription, SetEnvironmentVariable, ExecuteProcess
+from launch.actions import IncludeLaunchDescription, SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import PathJoinSubstitution, TextSubstitution
 from launch_ros.substitutions import FindPackageShare
@@ -290,6 +290,7 @@ def generate_launch_description():
                     if pj_flag and not plotjuggler_started:
                         # Nombre de archivo de layout desde simulation.config
                         layout_file = ros_node.get('plotjuggler_layout', None)
+                        pj_arguments = []
 
                         if layout_file:
                             layout_path = os.path.join(
@@ -297,24 +298,23 @@ def generate_launch_description():
                                 layout_file
                             )
                             print(f"  [PlotJuggler] Using layout: {layout_path}")
-                            pj_cmd = [
-                                'ros2', 'run', 'plotjuggler', 'plotjuggler',
-                                '--layout', layout_path
-                            ]
+                            # Argumentos para el nodo
+                            pj_arguments = ['--layout', layout_path]
                         else:
                             # Sin layout → se abre solo PlotJuggler vacío
                             print("  [PlotJuggler] Launching WITHOUT layout (no 'plotjuggler_layout' in config)")
-                            pj_cmd = [
-                                'ros2', 'run', 'plotjuggler', 'plotjuggler'
-                            ]
-
-                        plotjuggler_proc = ExecuteProcess(
-                            cmd=pj_cmd,
+                        
+                        plotjuggler_node = Node(
+                            package='plotjuggler',
+                            executable='plotjuggler',
+                            name='plotjuggler',
+                            arguments=pj_arguments,
                             output='screen'
                         )
-                        allRosNode.append(plotjuggler_proc)
+                        
+                        allRosNode.append(plotjuggler_node)
                         plotjuggler_started = True  
-                    # ===========================================================                    
+                    # ===========================================================                 
                 except Exception as e:
                     print(f" == config file error : {e}")
                     continue
@@ -387,9 +387,10 @@ def generate_launch_description():
     # Retrasar 10 segundos el lanzamiento del SLAM
     delayed_slam_launch = TimerAction(period=20.0, actions=[slam_launch])
 
-    delayed_slam_3d_launch = TimerAction(period=60.0, actions=[slam_3d_launch])
+    delayed_slam_3d_launch = TimerAction(period=5.0, actions=[slam_3d_launch])
 
     # allRosNode = [delayed_slam_launch] + [delayed_slam_3d_launch] + allRosNode
+    # allRosNode = [delayed_slam_3d_launch] + allRosNode
 
     if entire_robot_project == False:
         rviz_config_file = os.path.join(os.getenv('CONFIG_DIR'), 'slam_toolbox_default.rviz')

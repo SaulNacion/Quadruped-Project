@@ -35,27 +35,63 @@ Este proyecto es desarrollado por alumnos y supervisores de la Universidad Nacio
 
 ## Requirements / Requisitos
 
-- Ubuntu 24.04 LTS  
-- Gazebo Harmonic LTS 
-- ROS Jazzy LTS
-- RKO LIO
-```bash
-sudo apt-get install ros-${ROS_DISTRO}-rko-lio
-```
-- libunwind
-```bash
-sudo apt install -y libunwind-dev
-```
-- google-glog
-```bash
-sudo apt install -y libgoogle-glog-dev
-```
+Este proyecto está diseñado para funcionar en un entorno ROS 2 Jazzy Jalisco (Ubuntu 24.04). A continuación se detallan las dependencias necesarias para la simulación, navegación y control.
+
+Dependencias del Sistema
+Asegúrate de tener instaladas las siguientes herramientas y librerías base:
+
+- libunwind-dev
+
+- libgoogle-glog-dev
+
 > Agregar en CMakeLists.txt ubicado en quadruped_slam_3d/rko_lio la línea `find_package(glog REQUIRED)`
+
+### Paquetes de ROS 2
+
+| Categoría | Paquetes | Descripción |
+| --- | --- | --- |
+| **Navegación & SLAM** | `navigation2`, `nav2-bringup`, `slam-toolbox` | Stack de navegación y mapeo. |
+| **Simulación** | `ros-gz-sim`, `ros-gz-bridge` | Gazebo Sim (Harmonic) y el puente con ROS 2. |
+| **Control** | `ros2-control`, `ros2-controllers`, `gz-ros2-control` | Control de hardware y simulación de actuadores. |
+| **Sensores** | `velodyne`, `pointcloud-to-laserscan`, `rko-lio` | Drivers de LiDAR y odometría inercial (LIO). |
+| **Visualización** | `rviz2`, `plotjuggler-ros` | Visualización de datos y robótica. |
+| **Utilidades** | `xacro`, `robot-localization`, `joint-state-publisher-gui` | Descripción de robots y estimación de estado. |
+
+### Instalación
+
+Para instalar todas las dependencias necesarias en tu sistema, ejecuta el siguiente comando en tu terminal:
+
+```bash
+sudo apt-get update && sudo apt-get install -y \
+    ros-jazzy-navigation2 \
+    ros-jazzy-nav2-bringup \
+    ros-jazzy-nav2-minimal-tb* \
+    ros-jazzy-slam-toolbox \
+    ros-jazzy-pointcloud-to-laserscan \
+    ros-jazzy-ros-gz-sim \
+    ros-jazzy-ros-gz-bridge \
+    ros-jazzy-rviz2 \
+    ros-jazzy-rko-lio \
+    ros-jazzy-plotjuggler-ros \
+    ros-jazzy-gz-ros2-control \
+    ros-jazzy-xacro \
+    ros-jazzy-robot-localization \
+    ros-jazzy-ros2-controllers \
+    ros-jazzy-ros2-control \
+    ros-jazzy-velodyne \
+    ros-jazzy-velodyne-description \
+    ros-jazzy-joint-state-publisher-gui \
+    libunwind-dev \
+    libgoogle-glog-dev \
+
+```
+---
 
 For installation instructions, please visit the official tutorials:
 
-- [Ubuntu 24.04 installation guide](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview)  
-- [Gazebo installation guide](https://gazebosim.org/docs/latest/ros_installation/) 
+[Ubuntu 24.04 installation guide](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview)  
+
+[Gazebo installation guide](https://gazebosim.org/docs/latest/ros_installation/) 
 
 ### ⚠️ Observación de la instalaciôn de Gazebo
 

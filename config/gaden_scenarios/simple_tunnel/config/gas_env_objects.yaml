@@ -1,0 +1,306 @@
+gas_environment:
+  description: Exported from Gazebo world
+  objects:
+  - id: subt_tunnel_staging_area_0_0
+    mesh_file: cad_models/subt_tunnel_staging_area_0_0.DAE
+    pose_xyz_rpy: &id001
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  - id: subt_tunnel_staging_area_0_1
+    mesh_file: cad_models/subt_tunnel_staging_area_0_1.dae
+    pose_xyz_rpy: *id001
+  - id: subt_tunnel_staging_area_0_2
+    mesh_file: cad_models/subt_tunnel_staging_area_0_2.dae
+    pose_xyz_rpy: *id001
+  - id: tunnel_tile_5_1_0
+    mesh_file: cad_models/tunnel_tile_5_1_0.dae
+    pose_xyz_rpy:
+    - 20.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_2_0
+    mesh_file: cad_models/tunnel_tile_5_2_0.dae
+    pose_xyz_rpy:
+    - 40.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_3_0
+    mesh_file: cad_models/tunnel_tile_5_3_0.dae
+    pose_xyz_rpy:
+    - 60.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_4_0
+    mesh_file: cad_models/tunnel_tile_5_4_0.dae
+    pose_xyz_rpy:
+    - 80.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_5_0
+    mesh_file: cad_models/tunnel_tile_5_5_0.dae
+    pose_xyz_rpy:
+    - 100.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_6_0
+    mesh_file: cad_models/tunnel_tile_5_6_0.dae
+    pose_xyz_rpy:
+    - 120.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_7_0
+    mesh_file: cad_models/tunnel_tile_5_7_0.dae
+    pose_xyz_rpy:
+    - 140.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_8_0
+    mesh_file: cad_models/tunnel_tile_5_8_0.dae
+    pose_xyz_rpy:
+    - 160.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_9_0
+    mesh_file: cad_models/tunnel_tile_5_9_0.dae
+    pose_xyz_rpy:
+    - 180.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_10_0
+    mesh_file: cad_models/tunnel_tile_5_10_0.dae
+    pose_xyz_rpy:
+    - 200.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_11_0
+    mesh_file: cad_models/tunnel_tile_5_11_0.dae
+    pose_xyz_rpy:
+    - 220.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_12_0
+    mesh_file: cad_models/tunnel_tile_5_12_0.dae
+    pose_xyz_rpy:
+    - 240.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_13_0
+    mesh_file: cad_models/tunnel_tile_5_13_0.dae
+    pose_xyz_rpy:
+    - 260.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_14_0
+    mesh_file: cad_models/tunnel_tile_5_14_0.dae
+    pose_xyz_rpy:
+    - 280.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_15_0
+    mesh_file: cad_models/tunnel_tile_5_15_0.dae
+    pose_xyz_rpy:
+    - 300.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_16_0
+    mesh_file: cad_models/tunnel_tile_5_16_0.dae
+    pose_xyz_rpy:
+    - 320.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_17_0
+    mesh_file: cad_models/tunnel_tile_5_17_0.dae
+    pose_xyz_rpy:
+    - 340.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_18_0
+    mesh_file: cad_models/tunnel_tile_5_18_0.dae
+    pose_xyz_rpy:
+    - 360.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_19_0
+    mesh_file: cad_models/tunnel_tile_5_19_0.dae
+    pose_xyz_rpy:
+    - 380.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_20_0
+    mesh_file: cad_models/tunnel_tile_5_20_0.dae
+    pose_xyz_rpy:
+    - 400.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_21_0
+    mesh_file: cad_models/tunnel_tile_5_21_0.dae
+    pose_xyz_rpy:
+    - 420.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_22_0
+    mesh_file: cad_models/tunnel_tile_5_22_0.dae
+    pose_xyz_rpy:
+    - 440.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_23_0
+    mesh_file: cad_models/tunnel_tile_5_23_0.dae
+    pose_xyz_rpy:
+    - 460.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_24_0
+    mesh_file: cad_models/tunnel_tile_5_24_0.dae
+    pose_xyz_rpy:
+    - 480.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_25_0
+    mesh_file: cad_models/tunnel_tile_5_25_0.dae
+    pose_xyz_rpy:
+    - 500.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_26_0
+    mesh_file: cad_models/tunnel_tile_5_26_0.dae
+    pose_xyz_rpy:
+    - 520.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_27_0
+    mesh_file: cad_models/tunnel_tile_5_27_0.dae
+    pose_xyz_rpy:
+    - 540.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_28_0
+    mesh_file: cad_models/tunnel_tile_5_28_0.dae
+    pose_xyz_rpy:
+    - 560.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_29_0
+    mesh_file: cad_models/tunnel_tile_5_29_0.dae
+    pose_xyz_rpy:
+    - 580.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_30_0
+    mesh_file: cad_models/tunnel_tile_5_30_0.dae
+    pose_xyz_rpy:
+    - 600.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: tunnel_tile_5_31_0
+    mesh_file: cad_models/tunnel_tile_5_31_0.dae
+    pose_xyz_rpy:
+    - 620.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -1.570796
+  - id: Tunnel Tile Blocker_32_0
+    mesh_file: cad_models/Tunnel Tile Blocker_32_0.dae
+    pose_xyz_rpy:
+    - 631.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0

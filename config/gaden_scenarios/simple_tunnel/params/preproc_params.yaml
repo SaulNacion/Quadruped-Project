@@ -1,0 +1,62 @@
+# PARAMETERS FOR GADEN PREPROCESSING NODE (simple_tunnel)
+# =======================================================
+
+gaden_preprocessing:
+  ros__parameters:
+    # Tamaño de celda para OccupancyGrid3D
+    cell_size: 0.1   # [m] ajústalo si quieres menos/más resolución
+
+    # Geometría del entorno (todas las paredes/objetos sólidos) en STL
+    models:
+      - "$(var pkg_dir)/$(var scenario)/cad_models/subt_tunnel_staging_area_0_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/subt_tunnel_staging_area_0_1.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/subt_tunnel_staging_area_0_2.stl"
+
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_1_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_2_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_3_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_4_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_5_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_6_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_7_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_8_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_9_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_10_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_11_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_12_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_13_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_14_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_15_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_16_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_17_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_18_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_19_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_20_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_21_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_22_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_23_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_24_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_25_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_26_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_27_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_28_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_29_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_30_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_31_0.stl"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/Tunnel Tile Blocker_32_0.stl"
+
+    # Si tu entorno tuviera puertas abiertas o “salidas” explícitas,
+    # aquí irían sus meshes. En tu túnel sencillo podemos dejarlo vacío.
+    outlets_models: []
+
+    # Punto en espacio libre para que el preprocesado compruebe conectividad
+    empty_point_x: 1.0
+    empty_point_y: 0.0
+    empty_point_z: 1.0
+
+    # Viento: de momento asumo que tendrás snapshots CFD en wind_simulations
+    uniformWind: false
+    wind_files: "$(var pkg_dir)/$(var scenario)/wind_simulations/$(var wind_sim_path)"
+
+    # Dónde guardar OccupancyGrid3D.csv y otros outputs
+    output_path: "$(var pkg_dir)/$(var scenario)"

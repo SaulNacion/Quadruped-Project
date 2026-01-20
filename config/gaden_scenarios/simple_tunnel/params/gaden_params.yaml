@@ -1,0 +1,133 @@
+# PARAMETERS FOR GADEN (simple_tunnel)
+# ====================================
+
+# =========================================================
+# Entorno: visualización en RViz (CAD models, Occupancy3D)
+# =========================================================
+gaden_environment:
+  ros__parameters:
+    verbose: false
+    wait_preprocessing: false        # esperar o no al nodo de preprocesado
+    fixed_frame: "map"
+
+    # CAD models (DAE) del túnel simple, tomados de gas_env_objects.yaml
+    # Colores solo para distinguir visualmente en RViz
+    CAD_models:
+      # Entorno general (staging area + tiles)
+      - "!color [0.92, 0.96, 0.96]"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/subt_tunnel_staging_area_0_0.DAE"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/subt_tunnel_staging_area_0_1.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/subt_tunnel_staging_area_0_2.dae"
+
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_1_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_2_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_3_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_4_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_5_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_6_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_7_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_8_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_9_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_10_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_11_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_12_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_13_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_14_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_15_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_16_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_17_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_18_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_19_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_20_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_21_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_22_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_23_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_24_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_25_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_26_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_27_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_28_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_29_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_30_0.dae"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/tunnel_tile_5_31_0.dae"
+
+      # Bloque final en otro color (por ejemplo “pared de fin de túnel”)
+      - "!color [0.96, 0.17, 0.30]"
+      - "$(var pkg_dir)/$(var scenario)/cad_models/Tunnel Tile Blocker_32_0.dae"
+
+    # Occupancy 3D (la genera gaden_preprocessing)
+    occupancy3D_data: "$(var pkg_dir)/$(var scenario)/OccupancyGrid3D.csv"
+
+    # Fuente(s) de gas: la posición se pasa por variables del launch
+    number_of_sources: 1
+    source_0_position_x: $(var source_x)
+    source_0_position_y: $(var source_y)
+    source_0_position_z: $(var source_z)
+    source_0_scale: 0.2
+    source_0_color: [0.0, 1.0, 0.0]
+
+
+# =========================================================
+# Simulador de filamentos (dispersion de gas)
+# =========================================================
+gaden_filament_simulator:
+  ros__parameters:
+    verbose: false
+    wait_preprocessing: false
+
+    # Estos parámetros normalmente los tomas de un .yaml de simulación
+    # (sim1.yaml). Si quieres, luego te lo armo también.
+    sim_time: $(var sim_time)                         # [s]
+    time_step: $(var time_step)                       # [s]
+    num_filaments_sec: $(var num_filaments_sec)
+    variable_rate: $(var variable_rate)
+    filament_stop_steps: $(var filament_stop_steps)
+    ppm_filament_center: $(var ppm_filament_center)   # [ppm]
+    filament_initial_std: $(var filament_initial_std) # [cm]
+    filament_growth_gamma: $(var filament_growth_gamma) # [cm²/s]
+    filament_noise_std: $(var filament_noise_std)     # [m]
+    gas_type: $(var gas_type)                         # 0=EtOH, 1=CH4, etc.
+    temperature: $(var temperature)                   # [K]
+    pressure: 1.0                                     # [atm]
+    concentration_unit_choice: 1                      # 1 = ppm
+
+    occupancy3D_data: "$(var pkg_dir)/$(var scenario)/OccupancyGrid3D.csv"
+    fixed_frame: "map"
+
+    # Wind CFD
+    wind_data: "$(var pkg_dir)/$(var scenario)/wind_simulations/$(var wind_sim_path)"
+    wind_time_step: 1.0   # [s] entre snapshots de viento
+
+    # Loop de simulación
+    allow_looping: true
+    loop_from_step: 0
+    loop_to_step: 24
+
+    # Posición de la fuente (igual que en gaden_environment)
+    source_position_x: $(var source_x)
+    source_position_y: $(var source_y)
+    source_position_z: $(var source_z)
+
+    # Guardado de resultados
+    save_results: 1
+    results_time_step: 0.5
+    results_min_time: 0.0
+    results_location: "$(var pkg_dir)/$(var scenario)/gas_simulations/$(var simulation)"
+
+
+# =========================================================
+# Player (lee los logs y publica las distribuciones de gas)
+# =========================================================
+gaden_player:
+  ros__parameters:
+    verbose: false
+    player_freq: 2.0
+    initial_iteration: 0
+    num_simulators: 1
+
+    simulation_data_0: "$(var pkg_dir)/$(var scenario)/gas_simulations/$(var simulation)"
+    occupancyFile: "$(var pkg_dir)/$(var scenario)/OccupancyGrid3D.csv"
+
+    allow_looping: false
+    loop_from_iteration: 15
+    loop_to_iteration: 24

@@ -387,7 +387,7 @@ def generate_launch_description():
     # Retrasar 10 segundos el lanzamiento del SLAM
     delayed_slam_launch = TimerAction(period=20.0, actions=[slam_launch])
 
-    delayed_slam_3d_launch = TimerAction(period=5.0, actions=[slam_3d_launch])
+    delayed_slam_3d_launch = TimerAction(period=15.0, actions=[slam_3d_launch])
 
     # allRosNode = [delayed_slam_launch] + [delayed_slam_3d_launch] + allRosNode
     # allRosNode = [delayed_slam_3d_launch] + allRosNode

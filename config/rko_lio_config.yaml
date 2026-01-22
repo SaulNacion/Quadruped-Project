@@ -14,7 +14,7 @@ use_sim_time: true
 # TOPICS (según tu ros2 topic list)
 # ==============================================================================
 lidar_topic: "/unitree_lidar/points_stamped"
-imu_topic: "/imu"
+imu_topic: "/imu_filtered_2nd_order"
 
 # ==============================================================================
 # FRAMES (según tu RViz2)

@@ -50,7 +50,7 @@ Asegúrate de tener instaladas las siguientes herramientas y librerías base:
 
 | Categoría | Paquetes | Descripción |
 | --- | --- | --- |
-| **Navegación & SLAM** | `navigation2`, `nav2-bringup`, `slam-toolbox` | Stack de navegación y mapeo. |
+| **Navegación & SLAM** | `navigation2`, `nav2-bringup`, `slam-toolbox`, `grid-map-msgs` | Stack de navegación y mapeo. |
 | **Simulación** | `ros-gz-sim`, `ros-gz-bridge` | Gazebo Sim (Harmonic) y el puente con ROS 2. |
 | **Control** | `ros2-control`, `ros2-controllers`, `gz-ros2-control` | Control de hardware y simulación de actuadores. |
 | **Sensores** | `velodyne`, `pointcloud-to-laserscan`, `rko-lio` | Drivers de LiDAR y odometría inercial (LIO). |
@@ -81,6 +81,7 @@ sudo apt-get update && sudo apt-get install -y \
     ros-jazzy-velodyne \
     ros-jazzy-velodyne-description \
     ros-jazzy-joint-state-publisher-gui \
+    ros-jazzy-grid-map-msgs \
     libunwind-dev \
     libgoogle-glog-dev \
 

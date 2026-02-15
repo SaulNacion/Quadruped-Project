@@ -7,8 +7,10 @@ endif()
 
 # --- DEPENDENCIAS ROS ---
 find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
 find_package(ros_gz_interfaces REQUIRED) # añadido
+find_package(simulation_interfaces REQUIRED)
 find_package(ros_gz_sim REQUIRED)
 find_package(std_msgs REQUIRED)
 

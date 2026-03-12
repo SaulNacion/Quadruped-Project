@@ -33,6 +33,7 @@ RUN apt-get update && apt-get install -y \
     ros-jazzy-velodyne-description \
     ros-jazzy-joint-state-publisher-gui \
     assimp-utils \
+    ros-jazzy-grid-map-msgs \
  && rm -rf /var/lib/apt/lists/*
 
 
